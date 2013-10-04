@@ -1,38 +1,77 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
+# FRAMEWORK
 gem 'rails', '3.2.13'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
-
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+# SERVER
+gem 'unicorn'
+gem 'unicorn-rails'
+group :test, :development do
+  gem 'foreman'
 end
 
-gem 'jquery-rails'
+# DB
+gem 'pg', '~> 0.16.0'
+gem 'taps'
+# gem 'redis'
+# gem 'redis-objects'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# JSON API
+gem 'rocket_pants'
+gem 'active_model_serializers'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# AUTHENTICATION
+gem 'devise'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+# FILE STORAGE
+gem 'paperclip', '~> 3.0'
+gem 'aws-sdk'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# CACHE
+gem 'rack-cache'
+gem 'memcachier'
+gem 'dalli'
+gem 'kgio'
 
-# To use debugger
-# gem 'debugger'
+# MODELS
+gem 'pacecar'
+
+# SEARCH
+gem 'tire'
+gem 'tire-am_serializers'
+
+# TESTING
+group :test, :development do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'simplecov', :require => false
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'rest-client'
+end
+
+# ERROR HANDLING
+group :development do
+  gem 'better_errors'
+end
+
+# DEVELOPMENT ASSISTANCE
+group :development do
+  gem 'annotate'
+end
+
+# GUARD
+group :development, :test do
+  gem 'rb-fsevent'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'guard-annotate'
+end
+
+# MONITORING
+gem 'newrelic_rpm'
+
+# OBJECT QUERIES
+gem 'will_paginate'
