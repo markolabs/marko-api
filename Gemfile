@@ -17,6 +17,11 @@ gem 'taps'
 # gem 'redis'
 # gem 'redis-objects'
 
+# LOCATION
+# gem 'rgeo'
+# gem 'activerecord-postgis-adapter'
+gem 'geocoder'
+
 # JSON API
 gem 'rocket_pants'
 gem 'active_model_serializers'
@@ -27,6 +32,7 @@ gem 'devise'
 # FILE STORAGE
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
+gem 'exifr'
 
 # CACHE
 gem 'rack-cache'
@@ -37,9 +43,6 @@ gem 'kgio'
 # MODELS
 gem 'pacecar'
 
-# SEARCH
-gem 'tire'
-gem 'tire-am_serializers'
 
 # TESTING
 group :test, :development do

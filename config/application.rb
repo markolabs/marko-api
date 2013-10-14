@@ -58,5 +58,23 @@ module Spek
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Disable unnecessary generators
+    config.generators do |generate|
+        generate.helper false
+        generate.assets false
+        generate.view_specs false
+        generate.view false
+
+        generate.test_framework :rspec,
+            fixtures: true,
+            view_specs: false,
+            helper_specs: false,
+            routing_specs: false,
+            controller_specs: true,
+            request_specs: false
+
+        generate.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
   end
 end
