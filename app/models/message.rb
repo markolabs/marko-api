@@ -18,17 +18,25 @@
 
 class Message < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :image
-  attr_accessible :caption, :image, :latitude, :longitude, :message_type
+  has_attached_file :image, :styles => { :square => "640x640#" }
+  attr_accessible :caption, :image, :latitude, :longitude, :message_type, :user_id, :user
 
   after_post_process :post_process_photo
 
   def post_process_photo
     imgfile = EXIFR::JPEG.new(image.queued_for_write[:original].path)
-    return unless imgfile
+    return unless imgfile.exif?
 
-    self.latitude = imgfile.gps_latitude
-    self.longitude = imgfile.gps_longitude
+    logger.info imgfile.inspect
+
+    latitude = imgfile.gps_latitude.to_f
+    longitude = imgfile.gps_longitude.to_f
+
+    latitude = latitude * -1 if imgfile.gps_latitude_ref == "S"
+    longitude = longitude * -1 if imgfile.gps_longitude_ref == "W"
+
+    self.latitude = latitude
+    self.longitude = longitude
     self.created_at = imgfile.date_time
   end
 

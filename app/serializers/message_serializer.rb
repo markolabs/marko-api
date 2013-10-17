@@ -8,6 +8,10 @@ class MessageSerializer < ActiveModel::Serializer
 
   has_one :user
 
+  def image
+    object.image.url(:square)
+  end
+
   def location
     {
       latitude: object.latitude,
