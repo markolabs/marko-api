@@ -5,6 +5,7 @@ class MessageSerializer < ActiveModel::Serializer
   attribute :image
   attribute :caption
   attribute :location
+  attribute :distance
 
   has_one :user
 
@@ -17,6 +18,16 @@ class MessageSerializer < ActiveModel::Serializer
       latitude: object.latitude,
       longitude: object.longitude    
     }
+  end
+
+  def distance
+    unless object.distance.nil?
+      distance = object.distance.to_f
+      distance = distance.round(3)
+      return distance
+    else
+      return nil
+    end
   end
 
 end
