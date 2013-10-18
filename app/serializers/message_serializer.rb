@@ -21,7 +21,7 @@ class MessageSerializer < ActiveModel::Serializer
   end
 
   def distance
-    unless object.distance.nil?
+    if object.methods.include? "distance"
       distance = object.distance.to_f
       distance = distance.round(3)
       return distance
