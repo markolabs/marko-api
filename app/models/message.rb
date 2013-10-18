@@ -17,8 +17,8 @@
 #
 
 class Message < ActiveRecord::Base
-  self.per_page = 20
-  
+  self.per_page = 50
+
   belongs_to :user
   has_attached_file :image, :styles => { :square => "640x640#" }
   attr_accessible :caption, :image, :latitude, :longitude, :message_type, :user_id, :user
