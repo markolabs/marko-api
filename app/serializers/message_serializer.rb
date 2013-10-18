@@ -34,4 +34,20 @@ class MessageSerializer < ActiveModel::Serializer
     end
   end
 
+  def caption
+    if (distance)
+      "This is #{distance} miles away"
+    end
+  end
+
+  def message_type
+    if (caption && image)
+      "image-text"
+    elsif (caption)
+      "text"
+    else
+      "image"
+    end
+  end
+
 end
