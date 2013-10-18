@@ -1,7 +1,8 @@
 class MessagesController < RocketPants::Base
   def index
     unless (params[:latitude].nil? && params[:longitude].nil?)
-      messages = Message.order("created_at DESC").limit(20).near([params[:latitude], params[:longitude]], 1)
+      params[:radius] ||= 1
+      messages = Message.order("created_at DESC").limit(20).near([params[:latitude], params[:longitude]], params[:radius])
     else
       messages = Message.order("created_at DESC").limit(20)
     end
