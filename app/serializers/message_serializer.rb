@@ -10,7 +10,11 @@ class MessageSerializer < ActiveModel::Serializer
   has_one :user
 
   def image
-    object.image.url(:square)
+    if m.image.exists?
+      return object.image.url(:square)
+    else
+      return nil
+    end
   end
 
   def location
