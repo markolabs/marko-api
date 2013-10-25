@@ -20,7 +20,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :user
   has_attached_file :image, :styles => { :square => "640x640#" }
-  attr_accessible :caption, :image, :latitude, :longitude, :message_type, :user_id, :user
+  attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user
 
   reverse_geocoded_by :latitude, :longitude
 
