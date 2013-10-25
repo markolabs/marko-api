@@ -1,4 +1,6 @@
-class MessagesController < RocketPants::Base
+class MessagesController < ApiController
+  before_filter :require_login, only: [:create]
+
   def index
     params[:page] ||= 1
     unless (params[:latitude].nil? && params[:longitude].nil?)
@@ -17,7 +19,7 @@ class MessagesController < RocketPants::Base
   end
 
   def create
-    params[:message][:user_id] = 2 if params[:message][:user_id].nil?
+    params[:message][:user_id] = @current_user.id if params[:message][:user_id].nil?
     params[:message][:message_type] = "image" if params[:message][:message_type].nil?
 
     expose Message.create(params[:message])

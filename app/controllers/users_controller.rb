@@ -1,4 +1,4 @@
-class UsersController < RocketPants::Base
+class UsersController < ApiController
   def show
     
   end
