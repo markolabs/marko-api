@@ -28,6 +28,7 @@ class Message < ActiveRecord::Base
   after_post_process :post_process_photo
 
   def post_process_photo
+    return unless self.latitude.nil? && self.longitude.nil?
     imgfile = EXIFR::JPEG.new(image.queued_for_write[:original].path)
     return unless imgfile
 
