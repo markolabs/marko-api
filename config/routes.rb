@@ -4,6 +4,7 @@ Spek::Application.routes.draw do
     resources :messages
     resource :email
     resource :session
+    resources :users
   end
 
 end

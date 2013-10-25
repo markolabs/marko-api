@@ -1,9 +1,6 @@
 class SessionsController < RocketPants::Base
-  def show
-    expose "MEOWWWWW TOWN"
-  end
-
   def create
-    expose "HAIIII GUYZ"
+    user = User.find_by_fb_user_id(params[:session][:fb_user_id])
+    expose user
   end
 end
