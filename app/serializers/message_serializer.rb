@@ -1,4 +1,7 @@
 class MessageSerializer < ActiveModel::Serializer
+  cached
+  delegate :cache_key, to: :object
+
   attribute :id
   attribute :message_type
   attribute :created_at
