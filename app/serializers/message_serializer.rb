@@ -8,7 +8,7 @@ class MessageSerializer < ActiveModel::Serializer
   attribute :image
   attribute :caption
   attribute :location
-  attribute :distance
+  # attribute :distance
 
   has_one :user
 
