@@ -11,12 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011165919) do
+ActiveRecord::Schema.define(:version => 20131025181546) do
 
   create_table "messages", :force => true do |t|
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "message_type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

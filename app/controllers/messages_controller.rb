@@ -20,7 +20,6 @@ class MessagesController < ApiController
 
   def create
     params[:message][:user_id] = @current_user.id if params[:message][:user_id].nil?
-    params[:message][:message_type] = "image" if params[:message][:message_type].nil?
 
     expose Message.create(params[:message])
     # expose params[:message]

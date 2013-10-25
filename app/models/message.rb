@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  latitude           :float
 #  longitude          :float
-#  message_type       :string(255)
 #  image_file_name    :string(255)
 #  image_content_type :string(255)
 #  image_file_size    :integer
