@@ -37,7 +37,7 @@ class MessageSerializer < ActiveModel::Serializer
   def message_type
     if (caption && image)
       # "image-text"
-      "image" # because image-text hasn't been implement in client
+      "image-text" # because image-text hasn't been implement in client
     elsif (caption)
       "text"
     else
