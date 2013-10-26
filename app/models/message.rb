@@ -18,6 +18,8 @@
 class Message < ActiveRecord::Base
   self.per_page = 50
 
+  has_many :like_joins, class_name: "Like"
+  has_many :likes, through: :like_joins, source: :user
   belongs_to :user
   has_attached_file :image, :styles => { :square => "640x640#" }
   attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user

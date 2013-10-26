@@ -3,6 +3,7 @@ class MessagesController < ApiController
 
   def index
     params[:page] ||= 1
+
     unless (params[:latitude].nil? && params[:longitude].nil?)
       params[:radius] ||= ENV['DEFAULT_RADIUS'].to_f
 

@@ -11,4 +11,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :fb_user_id, :username
+
+  validates :username, presence: true, uniqueness: true
+  validates :fb_user_id, presence: true, uniqueness: true, numericality: true
 end
