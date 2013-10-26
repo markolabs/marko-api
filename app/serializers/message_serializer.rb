@@ -5,6 +5,7 @@ class MessageSerializer < ActiveModel::Serializer
   attribute :id
   attribute :message_type
   attribute :created_at
+  attribute :like_count
   attribute :image
   attribute :caption
   attribute :location
@@ -46,6 +47,10 @@ class MessageSerializer < ActiveModel::Serializer
     else
       "image"
     end
+  end
+
+  def like_count
+    object.likes.count
   end
 
 end
