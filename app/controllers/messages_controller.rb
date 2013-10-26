@@ -25,8 +25,8 @@ class MessagesController < ApiController
   end
 
   def create
-    # params[:message][:user_id] = @current_user.id if params[:message][:user_id].nil?
-    params[:message][:user_id] = 2 if params[:message][:user_id].nil?
+    params[:message][:user_id] = @current_user.id if params[:message][:user_id].nil?
+    # params[:message][:user_id] = 2 if params[:message][:user_id].nil?
 
     expose Message.create(params[:message])
     # expose params[:message]
