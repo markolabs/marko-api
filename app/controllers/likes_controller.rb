@@ -14,4 +14,5 @@ class LikesController < ApiController
   def destroy
     expose Message.find(params[:message_id]).likes.destroy @current_user
   end
+  
 end
