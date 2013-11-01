@@ -1,6 +1,7 @@
 class UsersController < ApiController
   def show
-    
+    user = User.find(params[:id])
+    expose user
   end
 
   def create

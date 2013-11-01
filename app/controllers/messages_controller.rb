@@ -27,7 +27,7 @@ class MessagesController < ApiController
   def create
     params[:message][:user_id] = @current_user.id
 
-    expose Message.create(params[:message])
+    expose Message.create!(params[:message])
     # expose params[:message]
   end
 end
