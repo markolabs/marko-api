@@ -78,3 +78,6 @@ gem 'newrelic_rpm'
 
 # OBJECT QUERIES
 gem 'will_paginate'
+
+# HEROKU
+# gem 'rails_12factor'
