@@ -10,6 +10,7 @@ class MessageSerializer < ActiveModel::Serializer
   attribute :caption
   attribute :location
   # attribute :distance
+  attribute :user_liked_post
 
   has_one :user
 
@@ -51,6 +52,10 @@ class MessageSerializer < ActiveModel::Serializer
 
   def like_count
     object.likes.count
+  end
+
+  def user_liked_post
+    scope
   end
 
 end

@@ -4,7 +4,7 @@ class UsersController < ApiController
   end
 
   def create
-    user = User.create(params[:user])
+    user = User.create!(params[:user])
     expose user
   end
 end
