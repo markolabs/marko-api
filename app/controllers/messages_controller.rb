@@ -8,13 +8,14 @@ class MessagesController < ApiController
 
     unless (params[:latitude].nil? && params[:longitude].nil?)
       params[:radius] ||= ENV['DEFAULT_RADIUS'].to_f
-      messages = messages.near([params[:latitude], params[:longitude]], params[:radius])
 
       if (ENV['QUERY_TYPE'] == "omega")
         messages = messages.order("distance ASC")
       else
         messages = messages.order("created_at DESC")
       end
+
+      messages = messages.near([params[:latitude], params[:longitude]], params[:radius])
 
     else
       messages = messages.order("created_at DESC")
