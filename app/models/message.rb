@@ -18,7 +18,7 @@
 #
 
 class Message < ActiveRecord::Base
-  self.per_page = 50
+  self.per_page = 20
 
   has_many :like_joins, class_name: "Like"
   has_many :likes, through: :like_joins, source: :user

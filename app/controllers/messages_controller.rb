@@ -4,17 +4,24 @@ class MessagesController < ApiController
   def index
     params[:page] ||= 1
 
+    messages = Message.page(params[:page])
+
     unless (params[:latitude].nil? && params[:longitude].nil?)
       params[:radius] ||= ENV['DEFAULT_RADIUS'].to_f
+      messages = messages.near([params[:latitude], params[:longitude]], params[:radius])
 
       if (ENV['QUERY_TYPE'] == "omega")
-        messages = Message.order("distance ASC").limit(20).near([params[:latitude], params[:longitude]], params[:radius]).page(params[:page])
+        messages = messages.order("distance ASC")
       else
-        messages = Message.order("created_at DESC").limit(20).near([params[:latitude], params[:longitude]], params[:radius]).page(params[:page])
+        messages = messages.order("created_at DESC")
       end
 
     else
-      messages = Message.order("created_at DESC").limit(20).page(params[:page])
+      messages = messages.order("created_at DESC")
+    end
+
+    if (params.has_key? "user_id")
+      messages = messages.where(user_id: params[:user_id])
     end
 
     paginated messages
@@ -29,5 +36,9 @@ class MessagesController < ApiController
 
     expose Message.create!(params[:message])
     # expose params[:message]
+  end
+
+  def destroy
+    expose Message.find(params[:id]).destroy!
   end
 end
