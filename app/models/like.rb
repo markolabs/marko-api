@@ -15,5 +15,4 @@ class Like < ActiveRecord::Base
   
   validates :user_id, presence: true, numericality: true, uniqueness: { scope: :message_id }
   validates :message_id, presence: true, numericality: true
-
 end

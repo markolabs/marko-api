@@ -43,7 +43,6 @@ gem 'kgio'
 # MODELS
 gem 'pacecar'
 
-
 # TESTING
 group :test, :development do
   gem 'factory_girl_rails'
@@ -78,6 +77,9 @@ gem 'newrelic_rpm'
 
 # OBJECT QUERIES
 gem 'will_paginate'
+
+# EXTERNAL API LIBRARIES
+gem 'fb_graph'
 
 # HEROKU
 # gem 'rails_12factor'

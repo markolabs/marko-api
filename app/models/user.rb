@@ -12,6 +12,9 @@
 class User < ActiveRecord::Base
   attr_accessible :fb_user_id, :username
 
+  has_many :like_joins, class_name: "Like"
+  has_many :likes, through: :like_joins, source: :message
+
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
 end

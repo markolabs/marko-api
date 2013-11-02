@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026184207) do
+ActiveRecord::Schema.define(:version => 20131102181904) do
+
+  create_table "impressions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "message_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "impressions", ["message_id"], :name => "index_impressions_on_message_id"
+  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "likes", :force => true do |t|
     t.integer  "message_id"

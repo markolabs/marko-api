@@ -40,6 +40,6 @@ class MessagesController < ApiController
   end
 
   def destroy
-    expose Message.find(params[:id]).destroy!
+    expose Message.find(params[:id]).destroy
   end
 end
