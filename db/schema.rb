@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108025157) do
+ActiveRecord::Schema.define(:version => 20131108035247) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -88,6 +88,16 @@ ActiveRecord::Schema.define(:version => 20131108025157) do
 
   add_index "opro_client_apps", ["app_id", "app_secret"], :name => "index_opro_client_apps_on_app_id_and_app_secret", :unique => true
   add_index "opro_client_apps", ["app_id"], :name => "index_opro_client_apps_on_app_id", :unique => true
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
+  add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "users", :force => true do |t|
     t.integer  "fb_user_id"

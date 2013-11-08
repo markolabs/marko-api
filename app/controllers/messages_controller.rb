@@ -28,6 +28,14 @@ class MessagesController < ApiController
     paginated messages
   end
 
+  def everyone
+    index
+  end
+
+  def friends
+    index
+  end
+
   def show
     expose Message.find(params[:id])
   end

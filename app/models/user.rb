@@ -41,12 +41,7 @@ class User < ActiveRecord::Base
 
   has_many :messages
 
-  list :inbox
-
-  has_many :inbox_messages, through: :inbox
-
-  def inbox_messages
-    Message.find(self.inbox.to_a)
-  end
+  has_many :relationships, foreign_key: "friend_id"
+  has_many :friends, through: :relationships, source: :user
 
 end

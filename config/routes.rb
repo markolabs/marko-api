@@ -4,6 +4,10 @@ Spek::Application.routes.draw do
     resources :messages, only: [:index, :show, :create, :destroy] do 
       resource :likes, only: [:show, :create, :destroy]
       resource :impressions, only: [:create]
+      collection do 
+        get 'friends'
+        get 'everyone'
+      end
     end 
     resource :session, only: [:create]
     resources :users, only: [:show, :create, :destroy] do
