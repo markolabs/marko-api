@@ -69,6 +69,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     fb_graph (2.7.8)
       httpclient (>= 2.2.0.2)
       multi_json (>= 1.3)
@@ -100,11 +102,15 @@ GEM
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
+    httpauth (0.2.0)
     httpclient (2.3.4.1)
     i18n (0.6.1)
     journey (1.0.4)
     json (1.8.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kgio (2.8.0)
+    kramdown (1.2.0)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -120,9 +126,27 @@ GEM
     moneta (0.7.17)
     multi_json (1.8.2)
     multi_xml (0.5.5)
+    multipart-post (1.2.0)
     newrelic_rpm (3.6.5.130)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
+    opro (0.5.0)
+      kramdown
+      rails (>= 3.1.0)
     orm_adapter (0.4.0)
     pacecar (1.5.3)
     paperclip (3.4.1)
@@ -174,6 +198,9 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.4)
+    redis-objects (0.7.0)
+      redis (>= 3.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rocket_pants (1.7.0)
@@ -259,12 +286,17 @@ DEPENDENCIES
   kgio
   memcachier
   newrelic_rpm
+  omniauth
+  omniauth-facebook
+  opro
   pacecar
   paperclip (~> 3.0)
   pg (~> 0.16.0)
   rack-cache
   rails (= 3.2.13)
   rb-fsevent
+  redis
+  redis-objects
   rest-client
   rocket_pants
   rspec-rails

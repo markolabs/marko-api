@@ -15,10 +15,11 @@
 #  updated_at         :datetime         not null
 #  ike_count          :integer
 #  likes_count        :integer
+#  color_theme_id     :integer
 #
 
 class Message < ActiveRecord::Base
-  attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user
+  attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user, :color_theme, :color_theme_id
 
   self.per_page = 20
 
@@ -28,6 +29,8 @@ class Message < ActiveRecord::Base
   has_many :impressions
 
   belongs_to :user
+
+  belongs_to :color_theme
 
   has_attached_file :image, :styles => { :square => "640x640#" }
 

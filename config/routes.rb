@@ -1,5 +1,5 @@
 Spek::Application.routes.draw do
-  
+
   api :version => 1 do
     resources :messages, only: [:index, :show, :create, :destroy] do 
       resource :likes, only: [:show, :create, :destroy]
@@ -11,5 +11,10 @@ Spek::Application.routes.draw do
     end
     resource :relationships
   end
+
+  devise_for :users
+
+  mount_opro_oauth
+
 
 end

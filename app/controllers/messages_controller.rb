@@ -33,6 +33,7 @@ class MessagesController < ApiController
   end
 
   def create
+    params[:message][:color_theme_id] = ColorTheme.random.id unless (params.has_key? "image")
     params[:message][:user_id] = @current_user.id
 
     expose Message.create!(params[:message])

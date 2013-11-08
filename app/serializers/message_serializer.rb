@@ -10,9 +10,10 @@ class MessageSerializer < ActiveModel::Serializer
   attribute :caption
   attribute :location
   # attribute :distance
-  attribute :user_liked_post
 
+  has_one :color_theme
   has_one :user
+  attribute :user_liked_post
 
   def image
     if object.image.exists?
