@@ -18,6 +18,7 @@
 #  provider               :string(255)
 #  uid                    :string(255)
 #  name                   :string(255)
+#  fb_token               :string(255)
 #
 
 class User < ActiveRecord::Base

@@ -21,9 +21,9 @@ class Relationship < ActiveRecord::Base
   # before_destroy :destroy_reverse_relationship
 
   def create_reverse_relationship
-    Relationship.skip_callback(:create)
+    Relationship.skip_callback(:create, :before)
     Relationship.create(user_id: self.friend_id, friend_id: self.user_id)
-    Relationship.set_callback(:create)
+    Relationship.set_callback(:create, :before)
   end
 
   def destroy_reverse_relationship

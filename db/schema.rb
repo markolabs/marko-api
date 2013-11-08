@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108035247) do
+ActiveRecord::Schema.define(:version => 20131108055927) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20131108035247) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.string   "fb_token"
   end
 
 end
