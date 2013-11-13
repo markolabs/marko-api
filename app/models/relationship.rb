@@ -17,5 +17,5 @@ class Relationship < ActiveRecord::Base
   # validates :friend_id, uniqueness: { scope: :user_id }
 
   attr_accessible :user_id, :friend_id
-
+  
 end
