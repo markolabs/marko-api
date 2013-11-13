@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
 
   has_many :messages
 
-  has_many :relationships, foreign_key: "friend_id" #, after_add: :create_reverse_relationship
-  has_many :friends, through: :relationships, source: :user
+  has_many :relationships, foreign_key: "friend_id"
+  has_many :friends, through: :relationships, source: :user, after_add: :reciprocate_friendship
 
   def fb_friends
     user = FbGraph::User.me(self.fb_token)
@@ -55,12 +55,12 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_reverse_relationship(relationship)
-    Relationship.create(user_id: relationship.friend_id, friend_id: relationship.user_id)
+  def reciprocate_friendship(friend)
+    friend.friends << self
   end
 
-  def destroy_reverse_relationship(relationship)
-    Relationship.where(user_id: relationship.friend_id, friend_id: relationship.user_id).destroy_all
-  end
+  # def destroy_reverse_relationship(relationship)
+  #   Relationship.where(user_id: relationship.friend_id, friend_id: relationship.user_id).destroy_all
+  # end
 
 end
