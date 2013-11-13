@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :messages
 
   has_many :relationships, foreign_key: "friend_id"
-  has_many :friends, through: :relationships, uniq: true, source: :user, after_add: :reciprocate_friendship
+  has_many :friends, through: :relationships, uniq: true, source: :user #, after_add: :reciprocate_friendship
 
   def fb_friends
     user = FbGraph::User.me(self.fb_token)
