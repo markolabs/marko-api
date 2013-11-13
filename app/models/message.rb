@@ -13,7 +13,6 @@
 #  user_id            :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  ike_count          :integer
 #  likes_count        :integer
 #  color_theme_id     :integer
 #
@@ -35,6 +34,13 @@ class Message < ActiveRecord::Base
   has_attached_file :image, :styles => { :square => "640x640#" }
 
   reverse_geocoded_by :latitude, :longitude
+
+  def self.from_friends(user)
+    friend_ids = "SELECT friend_id FROM relationships
+                         WHERE user_id = :user_id"
+    where("user_id IN (#{friend_ids}) OR user_id = :user_id",
+          user_id: user.id)
+  end
 
   after_post_process :post_process_photo
 

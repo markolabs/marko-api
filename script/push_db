@@ -1,0 +1,1 @@
+~/.rvm/bin/ruby-1.9.2-p320 /usr/bin/heroku db:push

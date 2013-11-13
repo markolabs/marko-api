@@ -2,20 +2,15 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  fb_user_id             :integer
-#  username               :string(255)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  reset_password_token   :string(255)
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0)
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  fb_token               :string(255)
+#  id         :integer          not null, primary key
+#  fb_user_id :integer
+#  username   :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  provider   :string(255)
+#  uid        :string(255)
+#  name       :string(255)
+#  fb_token   :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -39,7 +34,27 @@ class User < ActiveRecord::Base
 
   has_many :messages
 
-  has_many :relationships, foreign_key: "friend_id"
+  has_many :relationships, foreign_key: "friend_id" #, after_add: :create_reverse_relationship
   has_many :friends, through: :relationships, source: :user
+
+  def fb_friends
+    user = FbGraph::User.me(self.fb_token)
+    user = user.fetch
+    friend_ids = Array.new
+    user.friends.each do |friend|
+      friend_ids << friend.identifier
+    end
+    return friend_ids
+  end
+
+  private
+
+  def create_reverse_relationship(relationship)
+    Relationship.create(user_id: relationship.friend_id, friend_id: relationship.user_id)
+  end
+
+  def destroy_reverse_relationship(relationship)
+    Relationship.where(user_id: relationship.friend_id, friend_id: relationship.user_id).destroy_all
+  end
 
 end

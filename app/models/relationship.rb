@@ -17,19 +17,4 @@ class Relationship < ActiveRecord::Base
 
   attr_accessible :user_id, :friend_id
 
-  # before_create :create_reverse_relationship
-  # before_destroy :destroy_reverse_relationship
-
-  def create_reverse_relationship
-    Relationship.skip_callback(:create, :before)
-    Relationship.create(user_id: self.friend_id, friend_id: self.user_id)
-    Relationship.set_callback(:create, :before)
-  end
-
-  def destroy_reverse_relationship
-    Relationship.skip_callback(:destroy)
-    Relationship.where(user_id: self.friend_id, friend_id: self.user_id).destroy_all
-    Relationship.set_callback(:destroy)
-  end
-
 end
