@@ -76,8 +76,11 @@ group :development, :test do
 end
 
 # QUEUE
-gem 'iron_mq'
-gem 'delayed_job_ironmq'
+gem 'delayed_job'
+group :production do
+  gem 'iron_mq'
+  gem 'delayed_job_ironmq'
+end
 
 # MONITORING
 gem 'newrelic_rpm'

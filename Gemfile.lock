@@ -288,6 +288,7 @@ DEPENDENCIES
   better_errors
   dalli
   database_cleaner
+  delayed_job
   delayed_job_ironmq
   devise
   exifr

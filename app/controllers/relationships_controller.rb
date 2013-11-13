@@ -3,9 +3,6 @@ class RelationshipsController < ApiController
 
   def create
     # create relationships for currnt user
-    friends = User.where(fb_user_id: @current_user.fb_friends)
-    @current_user.friends = friends
-
-    expose friends
+    expose @current_user.add_fb_friends
   end
 end

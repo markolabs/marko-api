@@ -1,5 +1,5 @@
 class MessagesController < ApiController
-  before_filter :require_login, only: [:create]
+  before_filter :require_login
 
   def index
     params[:page] ||= 1
@@ -25,7 +25,7 @@ class MessagesController < ApiController
       messages = messages.where(user_id: params[:user_id])
     end
 
-    # messages = messages.from_friends(@current_user)
+    messages = messages.from_friends(@current_user)
 
     paginated messages
   end

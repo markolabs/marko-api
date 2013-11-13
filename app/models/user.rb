@@ -47,6 +47,12 @@ class User < ActiveRecord::Base
     return friend_ids
   end
 
+  def add_fb_friends
+    friends = User.where(fb_user_id: self.fb_friends)
+    self.friends = friends
+  end
+  handle_asynchronously :add_fb_friends
+
   private
 
   def create_reverse_relationship(relationship)
