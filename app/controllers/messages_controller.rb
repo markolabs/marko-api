@@ -25,16 +25,18 @@ class MessagesController < ApiController
       messages = messages.where(user_id: params[:user_id])
     end
 
-    messages = messages.from_friends(@current_user)
+    messages = messages.from_friends(@current_user) if @filter == "friends"
 
     paginated messages
   end
 
   def everyone
+    @filter = "everyone"
     index
   end
 
   def friends
+    @filter = "friends"
     index
   end
 
