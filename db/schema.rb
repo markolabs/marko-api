@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108055927) do
+ActiveRecord::Schema.define(:version => 20131113193016) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20131108055927) do
     t.integer  "user_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.integer  "ike_count"
     t.integer  "likes_count"
     t.integer  "color_theme_id"
   end
@@ -97,21 +96,17 @@ ActiveRecord::Schema.define(:version => 20131108055927) do
   end
 
   add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
+  add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "users", :force => true do |t|
     t.integer  "fb_user_id"
     t.string   "username"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
     t.string   "fb_token"
   end
 
