@@ -75,6 +75,10 @@ group :development, :test do
   gem 'guard-annotate'
 end
 
+# QUEUE
+gem 'iron_mq'
+gem 'delayed_job_ironmq'
+
 # MONITORING
 gem 'newrelic_rpm'
 

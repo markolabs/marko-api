@@ -1,5 +1,5 @@
 class MessagesController < ApiController
-  before_filter :require_login, only: [:create, :friends]
+  before_filter :require_login, only: [:create]
 
   def index
     params[:page] ||= 1

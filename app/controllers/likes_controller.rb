@@ -9,13 +9,13 @@ class LikesController < ApiController
 
   def create
     like = Message.find(params[:message_id]).likes << @current_user
-    Keen.publish("message_liked", like)
+    # Keen.publish("message_liked", like)
     expose like
   end
 
   def destroy
     unlike = Message.find(params[:message_id]).likes.destroy @current_user
-    Keen.publish("message_unliked", unlike)
+    # Keen.publish("message_unliked", unlike)
     expose unlike
   end
   
