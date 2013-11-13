@@ -38,16 +38,26 @@ class User < ActiveRecord::Base
   has_many :friends, through: :relationships, uniq: true, source: :user #, after_add: :reciprocate_friendship
 
   def fb_friends
+    return nil if self.fb_token.nil?
     user = FbGraph::User.me(self.fb_token)
-    user = user.fetch
+    
+    begin
+      user = user.fetch
+    rescue Exception => msg
+      logger.debug msg
+      return nil
+    end
+
     friend_ids = Array.new
     user.friends.each do |friend|
       friend_ids << friend.identifier
     end
+
     return friend_ids
   end
 
   def add_fb_friends
+    return false if self.fb_friends.blank?
     friends = User.where(fb_user_id: self.fb_friends)
     self.friends << friends
   end
