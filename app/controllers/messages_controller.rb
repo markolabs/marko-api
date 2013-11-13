@@ -44,11 +44,13 @@ class MessagesController < ApiController
     params[:message][:color_theme_id] = ColorTheme.random.id unless (params[:message].has_key? "image")
     params[:message][:user_id] = @current_user.id
 
-    expose Message.create!(params[:message])
-    # expose params[:message]
+    message = Message.create!(params[:message])
+    Keen.publish("message_create", message)
   end
 
   def destroy
-    expose Message.find(params[:id]).destroy
+    destroy = Message.find(params[:id]).destroy
+    Keen.publish("message_destroy", destroy)
+    expose destroy
   end
 end

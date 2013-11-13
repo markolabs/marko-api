@@ -109,6 +109,8 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    keen (0.7.7)
+      multi_json (~> 1.0)
     kgio (2.8.0)
     kramdown (1.2.0)
     listen (1.2.2)
@@ -283,6 +285,7 @@ DEPENDENCIES
   guard-annotate
   guard-bundler
   guard-rspec
+  keen
   kgio
   memcachier
   newrelic_rpm

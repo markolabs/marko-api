@@ -86,3 +86,6 @@ gem 'fb_graph'
 
 # HEROKU
 # gem 'rails_12factor'
+
+# ANALYTICS / DATASET
+gem 'keen'

@@ -1,2 +1,2 @@
-class RelationshipsController < ApplicationController
+class RelationshipsController < ApiController
 end

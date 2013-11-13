@@ -112,9 +112,6 @@ ActiveRecord::Schema.define(:version => 20131108055927) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
     t.string   "fb_token"
   end
 

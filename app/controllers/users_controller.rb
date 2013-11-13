@@ -7,6 +7,7 @@ class UsersController < ApiController
 
   def create
     user = User.create!(params[:user])
+    Keen.publish("user_creations", user)
     expose user
   end
 end
