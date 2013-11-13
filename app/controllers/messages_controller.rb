@@ -46,6 +46,7 @@ class MessagesController < ApiController
 
     message = Message.create!(params[:message])
     Keen.publish("message_create", message)
+    expose message
   end
 
   def destroy
