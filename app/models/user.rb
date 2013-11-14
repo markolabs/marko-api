@@ -14,8 +14,6 @@
 #
 
 class User < ActiveRecord::Base
-  include Redis::Objects
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -24,10 +22,11 @@ class User < ActiveRecord::Base
 
   # # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :fb_user_id, :username
+  attr_accessible :fb_user_id, :username, :fb_token
 
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
+  validates :fb_token, presence: true
 
   has_many :like_joins, class_name: "Like"
   has_many :likes, through: :like_joins, source: :message
@@ -36,6 +35,7 @@ class User < ActiveRecord::Base
 
   has_many :relationships, foreign_key: "friend_id"
   has_many :friends, through: :relationships, source: :user
+
 
   def fb_friends
     return nil if self.fb_token.nil?
