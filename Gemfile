@@ -82,9 +82,6 @@ group :production do
   gem 'delayed_job_ironmq'
 end
 
-# HEROKU SCALING
-
-
 # MONITORING
 gem 'appsignal'
 # gem 'newrelic_rpm'
