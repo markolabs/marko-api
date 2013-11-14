@@ -8,6 +8,7 @@ class UsersController < ApiController
   def create
     user = User.create!(params[:user])
     Keen.publish("user_creations", user)
+    user.add_fb_friends
     expose user
   end
 end

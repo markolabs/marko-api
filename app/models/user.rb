@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :messages
 
   has_many :relationships, foreign_key: "friend_id"
-  has_many :friends, through: :relationships, uniq: true, source: :user #, after_add: :reciprocate_friendship
+  has_many :friends, through: :relationships, source: :user
 
   def fb_friends
     return nil if self.fb_token.nil?
@@ -59,18 +59,12 @@ class User < ActiveRecord::Base
   def add_fb_friends
     return false if self.fb_friends.blank?
     friends = User.where(fb_user_id: self.fb_friends)
-    self.friends << friends
+
+    Relationship.transaction do 
+      self.friends << friends
+      friends.each { |f| f.friends << self }
+    end
   end
   handle_asynchronously :add_fb_friends
-
-  private
-
-  def reciprocate_friendship(friend)
-    friend.friends << self
-  end
-
-  # def destroy_reverse_relationship(relationship)
-  #   Relationship.where(user_id: relationship.friend_id, friend_id: relationship.user_id).destroy_all
-  # end
 
 end
