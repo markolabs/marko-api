@@ -1,4 +1,5 @@
 class UsersController < ApiController
+  before_filter :require_login, only: [:likes]
 
   def show
     user = User.find(params[:id])
@@ -10,5 +11,13 @@ class UsersController < ApiController
     Keen.publish("user_creations", user)
     user.add_fb_friends
     expose user
+  end
+
+  def likes
+    params[:page] ||= 1
+
+    likes = @current_user.likes.select("messages.id").page(params[:page]).per_page(500)
+
+    paginated likes, serializer: false
   end
 end

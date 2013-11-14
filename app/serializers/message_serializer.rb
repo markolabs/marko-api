@@ -9,11 +9,7 @@ class MessageSerializer < ActiveModel::Serializer
   attribute :image
   attribute :caption
   attribute :location
-  # attribute :distance
-
-  has_one :color_theme
   has_one :user
-  attribute :user_liked_post
 
   def image
     if object.image.exists?
@@ -53,10 +49,6 @@ class MessageSerializer < ActiveModel::Serializer
 
   def like_count
     object.likes.count
-  end
-
-  def user_liked_post
-    scope
   end
 
 end
