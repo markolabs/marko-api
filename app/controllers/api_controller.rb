@@ -3,10 +3,10 @@ class ApiController < RocketPants::Base
   before_filter :current_user
 
   def set_user
-    access_token = request.headers["fb_user_id"] || params["fb_user_id"]
+    access_token = request.headers["fb_token"] || params["fb_token"]
 
     if access_token
-      @current_user = User.find_by_fb_user_id(access_token)
+      @current_user = User.find_by_fb_token(access_token)
     else
       @current_user = nil
     end
