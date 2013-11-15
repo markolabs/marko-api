@@ -36,8 +36,6 @@ class User < ActiveRecord::Base
   has_many :relationships, foreign_key: "friend_id"
   has_many :friends, through: :relationships, source: :user
 
-  after_create :create_access_token
-
   def fb_friends
     return nil if self.fb_token.nil?
     user = FbGraph::User.me(self.fb_token)
