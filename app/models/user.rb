@@ -28,14 +28,15 @@ class User < ActiveRecord::Base
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
   validates :fb_token, presence: true
 
-  has_many :like_joins, class_name: "Like"
+  has_many :like_joins, class_name: "Like", dependent: :destroy
   has_many :likes, through: :like_joins, source: :message
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   has_many :relationships, foreign_key: "friend_id"
   has_many :friends, through: :relationships, source: :user
 
+  after_create :create_access_token
 
   def fb_friends
     return nil if self.fb_token.nil?
