@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115011443) do
+ActiveRecord::Schema.define(:version => 20131119071143) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20131115011443) do
     t.datetime "updated_at",         :null => false
     t.integer  "likes_count"
     t.integer  "color_theme_id"
+    t.boolean  "image_processing"
   end
 
   add_index "messages", ["color_theme_id"], :name => "index_messages_on_color_theme_id"

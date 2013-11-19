@@ -15,6 +15,7 @@
 #  updated_at         :datetime         not null
 #  likes_count        :integer
 #  color_theme_id     :integer
+#  image_processing   :boolean
 #
 
 class Message < ActiveRecord::Base
@@ -32,6 +33,7 @@ class Message < ActiveRecord::Base
   belongs_to :color_theme
 
   has_attached_file :image, :styles => { :square => "640x640#" }
+  process_in_background :image
 
   reverse_geocoded_by :latitude, :longitude
 

@@ -62,6 +62,8 @@ GEM
     delayed_job_ironmq (1.0.1)
       delayed_job (~> 3.0.0)
       iron_mq (>= 4.0.0)
+    delayed_paperclip (2.6.1)
+      paperclip (>= 3.3.0)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -297,6 +299,7 @@ DEPENDENCIES
   database_cleaner
   delayed_job
   delayed_job_ironmq
+  delayed_paperclip
   devise
   exifr
   factory_girl_rails

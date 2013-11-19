@@ -34,6 +34,7 @@ gem 'opro'
 
 # FILE STORAGE
 gem 'paperclip', '~> 3.0'
+gem 'delayed_paperclip'
 gem 'aws-sdk'
 gem 'exifr'
 
