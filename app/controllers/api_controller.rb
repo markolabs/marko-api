@@ -3,10 +3,10 @@ class ApiController < RocketPants::Base
   before_filter :current_user
 
   def set_user
-    access_token = request.headers["fb_user_id"] || params["fb_user_id"]
+    access_token = request.headers["fb_token"] || params["fb_token"]
 
     if access_token
-      @current_user = User.find_by_fb_user_id(access_token)
+      @current_user = User.find_by_fb_user_id(fb_id_from_token(access_token))
     else
       @current_user = nil
     end
@@ -26,6 +26,19 @@ class ApiController < RocketPants::Base
 
   def require_login
     error! :unauthenticated if @current_user.nil?
+  end
+
+  private
+
+  def fb_id_from_token(token)
+    if ((fb_id = Rails.cache.read({fb_token: token})).nil?)
+      user = FbGraph::User.me token
+      user = user.fetch
+      fb_id = user.identifier
+      Rails.cache.write({fb_token: token}, fb_id)
+    end
+
+    fb_id
   end
 
 end
