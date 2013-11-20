@@ -63,6 +63,9 @@ group :development do
   gem 'better_errors'
 end
 
+# LOGS
+gem 'lograge'
+
 # DEVELOPMENT ASSISTANCE
 group :development do
   gem 'annotate'
