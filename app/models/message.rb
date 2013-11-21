@@ -16,21 +16,23 @@
 #  likes_count        :integer
 #  color_theme_id     :integer
 #  image_processing   :boolean
+#  flags_counter      :integer
 #
 
 class Message < ActiveRecord::Base
-  attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user, :color_theme, :color_theme_id
+  attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user
 
   self.per_page = 20
 
   has_many :like_joins, class_name: "Like"
   has_many :likes, through: :like_joins, source: :user
 
+  has_many :flag_joins, class_name: "Flag"
+  has_many :flags, through: :flag_joins, source: :user
+
   has_many :impressions
 
   belongs_to :user
-
-  belongs_to :color_theme
 
   has_attached_file :image, :styles => { :square => "640x640#" }
   # process_in_background :image

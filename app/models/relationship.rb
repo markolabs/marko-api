@@ -13,9 +13,8 @@ class Relationship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: "User"
 
-  # move validation to uniqueness key in db index
-  # validates :friend_id, uniqueness: { scope: :user_id }
+  validates :friend_id, presence: true, numericality: true, uniqueness: { scope: :user_id }
+  validates :user_id, presence: true, numericality: true
 
   attr_accessible :user_id, :friend_id
-  
 end

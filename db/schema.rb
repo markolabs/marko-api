@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120223445) do
+ActiveRecord::Schema.define(:version => 20131121160934) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(:version => 20131120223445) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "flags", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "message_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "flags", ["message_id"], :name => "index_flags_on_message_id"
+  add_index "flags", ["user_id", "message_id"], :name => "index_flags_on_user_id_and_message_id", :unique => true
+  add_index "flags", ["user_id"], :name => "index_flags_on_user_id"
 
   create_table "impressions", :force => true do |t|
     t.integer  "user_id"
@@ -39,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20131120223445) do
   end
 
   add_index "likes", ["message_id"], :name => "index_likes_on_message_id"
+  add_index "likes", ["user_id", "message_id"], :name => "index_likes_on_user_id_and_message_id", :unique => true
   add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "messages", :force => true do |t|
@@ -55,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20131120223445) do
     t.integer  "likes_count"
     t.integer  "color_theme_id"
     t.boolean  "image_processing"
+    t.integer  "flags_counter"
   end
 
   add_index "messages", ["color_theme_id"], :name => "index_messages_on_color_theme_id"
