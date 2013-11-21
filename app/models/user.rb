@@ -48,8 +48,10 @@ class User < ActiveRecord::Base
     friends = User.where(fb_user_id: self.fb_friends)
 
     Relationship.transaction do 
-      self.friends << friends
-      friends.each { |f| f.friends << self }
+      friends.each do |f|
+        Relationship.where(user_id: self.id, friend_id: f.id).first_or_create
+        Relationship.where(user_id: f.id, friend_id: self.id).first_or_create
+      end
     end
   end
   handle_asynchronously :add_fb_friends
