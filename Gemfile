@@ -87,8 +87,8 @@ group :production do
 end
 
 # MONITORING
-gem 'appsignal'
-gem 'newrelic_rpm'
+# gem 'appsignal'
+# gem 'newrelic_rpm'
 
 # OBJECT QUERIES
 gem 'will_paginate'
