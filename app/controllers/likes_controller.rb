@@ -1,5 +1,5 @@
 class LikesController < ApiController
-  before_filter :require_login, only: [:create, :destroy]
+  before_filter :require_login
 
   def show
     params[:page] ||= 1

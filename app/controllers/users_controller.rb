@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  before_filter :require_login, only: [:likes]
+  before_filter :require_login, except: [:show]
 
   def show
     user = User.find(params[:id])

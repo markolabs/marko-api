@@ -3,6 +3,7 @@ Spek::Application.routes.draw do
   api :version => 1 do
     resources :messages, only: [:index, :show, :create, :destroy] do 
       resource :likes, only: [:show, :create, :destroy]
+      resource :flags, only: [:create]
       resource :impressions, only: [:create]
       collection do 
         get 'friends'
