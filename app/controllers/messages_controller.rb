@@ -49,13 +49,11 @@ class MessagesController < ApiController
     params[:message][:user_id] = @current_user.id
 
     message = Message.create!(params[:message])
-    Keen.publish("message_create", message)
     expose message
   end
 
   def destroy
     destroy = Message.find(params[:id]).destroy
-    Keen.publish("message_destroy", destroy)
     expose destroy
   end
 end
