@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121160934) do
+ActiveRecord::Schema.define(:version => 20131121163334) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20131121160934) do
     t.integer  "likes_count"
     t.integer  "color_theme_id"
     t.boolean  "image_processing"
-    t.integer  "flags_counter"
+    t.integer  "flags_count"
   end
 
   add_index "messages", ["color_theme_id"], :name => "index_messages_on_color_theme_id"
@@ -112,6 +112,14 @@ ActiveRecord::Schema.define(:version => 20131121160934) do
   add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
   add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
+
+  create_table "spatial_ref_sys", :id => false, :force => true do |t|
+    t.integer "srid",                      :null => false
+    t.string  "auth_name", :limit => 256
+    t.integer "auth_srid"
+    t.string  "srtext",    :limit => 2048
+    t.string  "proj4text", :limit => 2048
+  end
 
   create_table "users", :force => true do |t|
     t.integer  "fb_user_id", :limit => 8

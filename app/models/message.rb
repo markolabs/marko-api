@@ -16,7 +16,7 @@
 #  likes_count        :integer
 #  color_theme_id     :integer
 #  image_processing   :boolean
-#  flags_counter      :integer
+#  flags_count        :integer
 #
 
 class Message < ActiveRecord::Base
