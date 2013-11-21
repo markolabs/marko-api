@@ -26,6 +26,7 @@ class MessagesController < ApiController
     end
 
     messages = messages.from_friends(@current_user) if @filter == "friends"
+    # messages = messages.hide_flags(@current_user)
 
     paginated messages
   end
