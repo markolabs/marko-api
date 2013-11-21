@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
-  validates :fb_token, presence: true
 
   has_many :like_joins, class_name: "Like", dependent: :destroy
   has_many :likes, through: :like_joins, source: :message
