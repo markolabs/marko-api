@@ -14,7 +14,7 @@ class MessageSerializer < ActiveModel::Serializer
   def image
     if object.image.exists?
       if object.image_processing?
-        return object.image.url
+        return object.image.url(:original)
       else
         return object.image.url(:square)
       end
