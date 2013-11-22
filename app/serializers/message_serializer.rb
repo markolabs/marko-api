@@ -14,7 +14,7 @@ class MessageSerializer < ActiveModel::Serializer
   def image
     if object.image.exists?
       if object.image_processing?
-        return object.image.url(:original)
+        return "http://s3.amazonaws.com/SpekApp" + object.image.path
       else
         return object.image.url(:square)
       end
