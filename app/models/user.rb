@@ -72,10 +72,4 @@ class User < ActiveRecord::Base
     self.fb_token = fb_auth.access_token.access_token
   end
 
-  def short_fb_token=(token)
-    self.fb_token = token
-    self.fb_token_expired = false
-    self.delay.extend_fb_token
-  end
-
 end
