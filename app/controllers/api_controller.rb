@@ -13,7 +13,7 @@ class ApiController < RocketPants::Base
   end
 
   def current_user
-    if params[:id] == "me" 
+    if params[:id] == "me"
       require_login
       params[:id] = @current_user.id 
     end

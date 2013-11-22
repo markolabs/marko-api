@@ -7,7 +7,7 @@
 #  username   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  provider   :string(255)
+#  fb_token   :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -24,10 +24,10 @@ class User < ActiveRecord::Base
   has_many :relationships, foreign_key: "friend_id"
   has_many :friends, through: :relationships, source: :user
 
-  def fb_friends
+  def fb_user
     return nil if self.fb_token.nil?
     user = FbGraph::User.me(self.fb_token)
-    
+
     begin
       user = user.fetch
     rescue Exception => msg
@@ -35,8 +35,14 @@ class User < ActiveRecord::Base
       return nil
     end
 
+    return user
+  end
+
+  def fb_friends
+    return nil if self.fb_user.nil?
+    
     friend_ids = Array.new
-    user.friends.each do |friend|
+    self.fb_user.friends.each do |friend|
       friend_ids << friend.identifier
     end
 
@@ -55,5 +61,13 @@ class User < ActiveRecord::Base
     end
   end
   handle_asynchronously :add_fb_friends
+
+  def extend_fb_token
+    return false if self.fb_token.nil?
+
+    fb_auth = FbGraph::Auth.new(ENV['FB_APP_ID'], ENV['FB_APP_SECRET'])
+    fb_auth.exchange_token! self.fb_token
+    self.fb_token = fb_auth.access_token.access_token
+  end
 
 end
