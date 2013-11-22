@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121163334) do
+ActiveRecord::Schema.define(:version => 20131122083223) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -86,11 +86,12 @@ ActiveRecord::Schema.define(:version => 20131121163334) do
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.integer  "fb_user_id", :limit => 8
+    t.integer  "fb_user_id",       :limit => 8
     t.string   "username"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "fb_token"
+    t.boolean  "fb_token_expired"
   end
 
 end

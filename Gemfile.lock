@@ -51,6 +51,7 @@ GEM
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
+    daemons (1.1.9)
     dalli (2.6.4)
     database_cleaner (1.1.1)
     delayed_job (3.0.5)
@@ -293,6 +294,7 @@ DEPENDENCIES
   annotate
   aws-sdk
   better_errors
+  daemons
   dalli
   database_cleaner
   delayed_job

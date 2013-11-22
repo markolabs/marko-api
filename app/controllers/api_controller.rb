@@ -7,6 +7,10 @@ class ApiController < RocketPants::Base
 
     if access_token
       @current_user = User.find_by_fb_user_id(fb_id_from_token(access_token))
+      if @current_user.fb_token_expired
+        @current_user.short_fb_token = access_token 
+        @current_user.save
+      end
     else
       @current_user = nil
     end

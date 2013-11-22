@@ -81,6 +81,7 @@ end
 
 # QUEUE
 gem 'delayed_job'
+gem 'daemons'
 group :production do
   gem 'iron_mq'
   gem 'delayed_job_ironmq'

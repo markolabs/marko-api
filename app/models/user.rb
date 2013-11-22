@@ -2,12 +2,13 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  fb_user_id :integer
-#  username   :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  fb_token   :string(255)
+#  id               :integer          not null, primary key
+#  fb_user_id       :integer
+#  username         :string(255)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  fb_token         :string(255)
+#  fb_token_expired :boolean
 #
 
 class User < ActiveRecord::Base
@@ -31,6 +32,7 @@ class User < ActiveRecord::Base
     begin
       user = user.fetch
     rescue Exception => msg
+      self.fb_token_expired = true
       logger.debug msg
       return nil
     end
@@ -68,6 +70,12 @@ class User < ActiveRecord::Base
     fb_auth = FbGraph::Auth.new(ENV['FB_APP_ID'], ENV['FB_APP_SECRET'])
     fb_auth.exchange_token! self.fb_token
     self.fb_token = fb_auth.access_token.access_token
+  end
+
+  def short_fb_token=(token)
+    self.fb_token = token
+    self.fb_token_expired = false
+    self.delay.extend_fb_token
   end
 
 end
