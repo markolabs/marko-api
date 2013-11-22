@@ -13,7 +13,11 @@ class MessageSerializer < ActiveModel::Serializer
 
   def image
     if object.image.exists?
-      return object.image.url
+      if object.image_processing?
+        return object.image.url
+      else
+        return object.image.url(:square)
+      end
     else
       return nil
     end
