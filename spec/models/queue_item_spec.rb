@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ColorTheme do
+describe QueueItem do
   pending "add some examples to (or delete) #{__FILE__}"
 end
