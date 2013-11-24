@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :messages, dependent: :destroy
 
   has_many :relationships, foreign_key: "friend_id", dependent: :destroy
+  has_many :reverse_relationships, class_name: "Relationship", foreign_key: "user_id", dependent: :destroy
   has_many :friends, through: :relationships, source: :user
 
 
