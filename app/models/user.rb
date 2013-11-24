@@ -23,13 +23,7 @@ class User < ActiveRecord::Base
   has_many :messages, dependent: :destroy
 
   has_many :relationships, foreign_key: "friend_id", dependent: :destroy
-  has_many :reverse_relationships, foreign_key: "user_id", dependent: :destroy
   has_many :friends, through: :relationships, source: :user
-
-  has_many :queue_items_sent, class_name: "QueueItem", dependent: :destroy
-  has_many :queue_items_received, class_name: "QueueItem", dependent: :destroy
-  has_many :sent_messages, through: :queue_items_sent, source: :message
-  has_many :received_messages, through: :queue_items_received, source: :message
 
 
   def fb_user

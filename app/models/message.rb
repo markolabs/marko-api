@@ -33,8 +33,6 @@ class Message < ActiveRecord::Base
 
   has_many :impressions
 
-  has_many :queue_items
-
   belongs_to :user
 
   has_attached_file :image, :styles => { :square => "640x640#" }
