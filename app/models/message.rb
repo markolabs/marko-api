@@ -15,7 +15,6 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  likes_count        :integer
-#  color_theme_id     :integer
 #  image_processing   :boolean
 #  flags_count        :integer
 #
