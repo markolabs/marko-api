@@ -9,7 +9,7 @@ class MessagesController < ApiController
     unless (params[:latitude].nil? && params[:longitude].nil?)
       params[:radius] ||= ENV['DEFAULT_RADIUS'].to_f
 
-      @current_user.pings.create(params.slice(:latitude, :longitude))
+      @current_user.pings.create(params.slice(:latitude, :longitude)) if (params[:page] == 1)
 
       if (ENV['QUERY_TYPE'] == "omega")
         messages = messages.order("distance ASC")
