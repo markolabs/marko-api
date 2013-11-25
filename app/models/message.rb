@@ -47,6 +47,12 @@ class Message < ActiveRecord::Base
           user_id: user.id)
   end
 
+  def self.hide_flags(user)
+    flagged_messages = "SELECT message_id AS id FROM flags
+                            WHERE user_id = :user_id"
+    where("id NOT IN (#{flagged_messages})", user_id: user.id)
+  end
+
   after_post_process :post_process_photo
 
   def post_process_photo

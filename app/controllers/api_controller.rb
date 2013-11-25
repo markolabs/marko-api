@@ -1,6 +1,6 @@
 class ApiController < RocketPants::Base
   before_filter :set_user
-  before_filter :current_user
+  before_filter :current_user_me
 
   def set_user
     access_token = request.headers["fb_token"] || params["fb_token"]
@@ -18,7 +18,13 @@ class ApiController < RocketPants::Base
     end
   end
 
-  def current_user
+  def require_login
+    error! :unauthenticated if @current_user.nil?
+  end
+
+  private
+
+  def current_user_me
     if params[:id] == "me"
       require_login
       params[:id] = @current_user.id 
@@ -29,12 +35,6 @@ class ApiController < RocketPants::Base
       params[:user_id] = @current_user.id
     end
   end
-
-  def require_login
-    error! :unauthenticated if @current_user.nil?
-  end
-
-  private
 
   def fb_id_from_token(token)
     if ((fb_id = Rails.cache.read({fb_token: token})).nil?)
