@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125040325) do
-
-  create_table "color_themes", :force => true do |t|
-    t.string   "name"
-    t.string   "background"
-    t.string   "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20131125084243) do
 
   create_table "flags", :force => true do |t|
     t.integer  "user_id"
@@ -66,12 +58,10 @@ ActiveRecord::Schema.define(:version => 20131125040325) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "likes_count"
-    t.integer  "color_theme_id"
     t.boolean  "image_processing"
     t.integer  "flags_count"
   end
 
-  add_index "messages", ["color_theme_id"], :name => "index_messages_on_color_theme_id"
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "pings", :force => true do |t|
