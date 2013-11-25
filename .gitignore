@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 /coverage
-
 /public/system
+/docs
+/doc

@@ -17,9 +17,13 @@ gem 'taps'
 # gem 'redis'
 # gem 'redis-objects'
 
+# ACTIVE RECORD
+gem 'squeel'
+gem 'rgeo-activerecord'
+gem 'activerecord-postgis-adapter'
+
 # LOCATION
-# gem 'rgeo'
-# gem 'activerecord-postgis-adapter'
+gem 'rgeo'
 gem 'geocoder'
 
 # JSON API
@@ -31,6 +35,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'opro'
+gem 'cancan'
 
 # FILE STORAGE
 gem 'paperclip', '~> 3.0'
@@ -46,6 +51,7 @@ gem 'kgio'
 
 # MODELS
 gem 'pacecar'
+gem 'will_paginate'
 
 # TESTING
 group :test, :development do
@@ -68,6 +74,8 @@ gem 'lograge'
 
 # DEVELOPMENT ASSISTANCE
 group :development do
+  gem 'lol_dba'
+  gem 'railroady'
   gem 'annotate'
 end
 
@@ -79,7 +87,7 @@ group :development, :test do
   gem 'guard-annotate'
 end
 
-# QUEUE
+# WORK QUEUE
 gem 'delayed_job'
 gem 'daemons'
 group :production do
@@ -91,14 +99,8 @@ end
 # gem 'appsignal'
 # gem 'newrelic_rpm'
 
-# OBJECT QUERIES
-gem 'will_paginate'
-
 # EXTERNAL API LIBRARIES
 gem 'fb_graph'
 
 # HEROKU
 gem 'rails_12factor'
-
-# ANALYTICS / DATASET
-gem 'keen'

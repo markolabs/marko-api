@@ -25,7 +25,7 @@ class MessagesController < ApiController
 
       # sets a users current location (marko ping) based on their request location
       # only does this one per pagination
-      @current_user.pings.create(params.slice(:latitude, :longitude)) if (params[:page].to_i == 1)
+      @current_user.pings.create(params.slice(:latitude, :longitude)) if (params[:page] == 1)
 
 
     else

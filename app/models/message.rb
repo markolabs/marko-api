@@ -15,7 +15,6 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  likes_count        :integer
-#  color_theme_id     :integer
 #  image_processing   :boolean
 #  flags_count        :integer
 #
@@ -41,36 +40,13 @@ class Message < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
 
   def self.from_friends(user)
-    friend_ids = "SELECT friend_id FROM relationships
-                         WHERE user_id = :user_id"
-    where("user_id IN (#{friend_ids}) OR user_id = :user_id",
-          user_id: user.id)
+    friend_ids = Relationship.where{user_id == my{user.id}}
+    where{(user_id.in(friend_ids.select{:friend_id})) | (user_id == my{user.id})}
   end
 
   def self.hide_flags(user)
-    flagged_messages = "SELECT message_id AS id FROM flags
-                            WHERE user_id = :user_id"
-    where("id NOT IN (#{flagged_messages})", user_id: user.id)
-  end
-
-  after_post_process :post_process_photo
-
-  def post_process_photo
-    return unless self.latitude.nil? && self.longitude.nil?
-    imgfile = EXIFR::JPEG.new(image.queued_for_write[:original].path)
-    return unless imgfile
-
-    logger.info imgfile.inspect
-
-    latitude = imgfile.gps_latitude.to_f
-    longitude = imgfile.gps_longitude.to_f
-
-    latitude = latitude * -1 if imgfile.gps_latitude_ref == "S"
-    longitude = longitude * -1 if imgfile.gps_longitude_ref == "W"
-
-    self.latitude = latitude
-    self.longitude = longitude
-    self.created_at = imgfile.date_time
+    flagged_messages = Flag.where{user_id == my{user.id}}
+    where{id.not_in(flagged_messages.select{:message_id})}
   end
 
 end
