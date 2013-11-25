@@ -11,7 +11,7 @@ class ApiController < RocketPants::Base
         @current_user.fb_token = access_token
         @current_user.fb_token_expired = false
         @current_user.save
-        # @current_user.delay.extend_fb_token
+        @current_user.delay.extend_fb_token
       end
     else
       @current_user = nil

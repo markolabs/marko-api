@@ -12,7 +12,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :fb_user_id, :username, :fb_token
+  attr_accessible :fb_user_id, :username, :fb_token, :fb_token_expired
 
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: "user_id", dependent: :destroy
   has_many :friends, through: :relationships, source: :user
 
+  has_many :pings
 
   def fb_user
     return nil if self.fb_token.nil?

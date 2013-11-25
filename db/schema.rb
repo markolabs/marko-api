@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122083223) do
+ActiveRecord::Schema.define(:version => 20131125040325) do
 
   create_table "color_themes", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(:version => 20131122083223) do
 
   add_index "messages", ["color_theme_id"], :name => "index_messages_on_color_theme_id"
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
+
+  create_table "pings", :force => true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pings", ["user_id"], :name => "index_pings_on_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
