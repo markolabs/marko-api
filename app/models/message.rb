@@ -17,9 +17,12 @@
 #  likes_count        :integer
 #  image_processing   :boolean
 #  flags_count        :integer
+#  deleted_at         :time
 #
 
 class Message < ActiveRecord::Base
+  acts_as_paranoid
+
   attr_accessible :caption, :image, :latitude, :longitude, :user_id, :user
 
   self.per_page = 20
@@ -34,7 +37,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :user
 
-  has_attached_file :image, :styles => { :square => "640x640#" }
+  has_attached_file :image, :styles => { :square => "640x640#" }, :preserve_files => true
   process_in_background :image
 
   reverse_geocoded_by :latitude, :longitude

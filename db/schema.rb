@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125084243) do
+ActiveRecord::Schema.define(:version => 20131126015358) do
 
   create_table "flags", :force => true do |t|
     t.integer  "user_id"
     t.integer  "message_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "flags", ["message_id"], :name => "index_flags_on_message_id"
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131125084243) do
     t.integer  "message_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "impressions", ["message_id"], :name => "index_impressions_on_message_id"
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20131125084243) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "likes", ["message_id"], :name => "index_likes_on_message_id"
@@ -60,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20131125084243) do
     t.integer  "likes_count"
     t.boolean  "image_processing"
     t.integer  "flags_count"
+    t.time     "deleted_at"
   end
 
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
@@ -70,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20131125084243) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "pings", ["user_id"], :name => "index_pings_on_user_id"
@@ -79,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20131125084243) do
     t.integer  "friend_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
@@ -92,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20131125084243) do
     t.datetime "updated_at",                    :null => false
     t.string   "fb_token"
     t.boolean  "fb_token_expired"
+    t.time     "deleted_at"
   end
 
 end

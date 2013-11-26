@@ -9,9 +9,12 @@
 #  updated_at       :datetime         not null
 #  fb_token         :string(255)
 #  fb_token_expired :boolean
+#  deleted_at       :time
 #
 
 class User < ActiveRecord::Base
+  acts_as_paranoid
+
   attr_accessible :fb_user_id, :username, :fb_token, :fb_token_expired
 
   validates :username, presence: true, uniqueness: true

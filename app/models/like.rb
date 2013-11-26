@@ -7,9 +7,12 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  deleted_at :time
 #
 
 class Like < ActiveRecord::Base
+  acts_as_paranoid
+
   belongs_to :message, counter_cache: true, touch: true
   belongs_to :user
   

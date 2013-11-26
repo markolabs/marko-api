@@ -7,9 +7,12 @@
 #  message_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  deleted_at :time
 #
 
 class Flag < ActiveRecord::Base
+  acts_as_paranoid
+
   belongs_to :user
   belongs_to :message, counter_cache: true, touch: true
   

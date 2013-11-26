@@ -18,6 +18,7 @@ gem 'taps'
 # gem 'redis-objects'
 
 # ACTIVE RECORD
+gem 'acts_as_paranoid'
 gem 'squeel'
 gem 'rgeo-activerecord'
 gem 'activerecord-postgis-adapter'
@@ -96,6 +97,7 @@ group :production do
 end
 
 # MONITORING
+gem 'honeybadger'
 # gem 'appsignal'
 # gem 'newrelic_rpm'
 

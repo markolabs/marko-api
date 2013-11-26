@@ -1,20 +1,18 @@
 development:
-  adapter: postgis
+  adapter: postgresql
   database: spek_dev
   host: localhost
   pool: 5
   timeout: 5000
   postgis_extension: postgis
-  schema_search_path: '"$user", public, postgis'
 
 test:
-  adapter: postgis
+  adapter: postgresql
   database: spek_test
   host: localhost
   pool: 5
   timeout: 5000
   postgis_extension: postgis
-  schema_search_path: '"$user", public, postgis'
 
 # THIS IS REPLACED ON HEROKU DEPLOY
 production:
@@ -24,4 +22,3 @@ production:
   pool: 5
   timeout: 5000
   postgis_extension: postgis
-  schema_search_path: '"$user", public, postgis'
