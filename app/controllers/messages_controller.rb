@@ -1,4 +1,6 @@
 class MessagesController < ApiController
+  jsonp
+  
   before_filter :require_login
 
   def index
