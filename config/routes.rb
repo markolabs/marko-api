@@ -21,7 +21,23 @@ Spek::Application.routes.draw do
   end
 
   api version: 2, module: "v2" do
-    
+    resources :messages, only: [:index, :show, :create, :destroy] do 
+      resource :likes, only: [:show, :create, :destroy]
+      resource :flags, only: [:create]
+      resource :impressions, only: [:create]
+      collection do 
+        get 'friends'
+        get 'everyone'
+      end
+    end 
+    resources :sessions, only: [:create]
+    resources :users, only: [:index, :show, :create, :destroy] do
+      resources :messages, only: [:index]
+      member do
+        get 'likes'
+      end
+    end
+    resource :relationships
   end
 
 end

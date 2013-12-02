@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
 
   has_many :pings
 
+  has_many :sessions
+  has_many :devices
+
   def fb_user
     return nil if self.fb_token.nil?
     user = FbGraph::User.me(self.fb_token)

@@ -1,21 +1,27 @@
-class V1::ApiController < RocketPants::Base
+class V2::ApiController < RocketPants::Base
   before_filter :set_user
   before_filter :current_user_me
 
-  def set_user
-    access_token = request.headers["fb_token"] || params["fb_token"]
+  def current_session
+    access_token = request.headers["access_token"] || params["access_token"]
 
     if access_token
-      @current_user = User.find_by_fb_user_id(fb_id_from_token(access_token))
-      if !@current_user.nil? && @current_user.fb_token_expired
-        @current_user.fb_token = access_token
-        @current_user.fb_token_expired = false
-        @current_user.save
-        @current_user.delay.extend_fb_token
-      end
+      Session.find_by_token(access_token)
     else
-      @current_user = nil
+      nil
     end
+  end
+
+  def current_user
+    if current_session
+      current_session.user
+    else
+      nil
+    end
+  end
+
+  def set_user
+    @current_user = current_user
   end
 
   def require_login

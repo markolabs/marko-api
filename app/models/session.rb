@@ -15,6 +15,10 @@ class Session < ActiveRecord::Base
   belongs_to :device
   attr_accessible :token
 
+  validates :token, presence: true, uniqueness: true
+  validates :user, presence: true
+  validates :device, presence: true
+
   before_create :create_token
 
   private

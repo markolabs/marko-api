@@ -13,6 +13,9 @@ class Device < ActiveRecord::Base
   belongs_to :user
   attr_accessible :token, :user, :user_id
 
+  validates :token, presence: true
+  validates :user, presence: true
+
   def send_notification(text)
     
   end
