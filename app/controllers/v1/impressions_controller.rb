@@ -1,4 +1,4 @@
-class ImpressionsController < ApiController
+class V1::ImpressionsController < V1::ApiController
   before_filter :require_login
 
   def create

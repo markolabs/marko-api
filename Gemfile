@@ -18,6 +18,7 @@ gem 'taps'
 # gem 'redis-objects'
 
 # ACTIVE RECORD
+gem 'uuidtools'
 gem 'activemodel'
 gem 'acts_as_paranoid'
 gem 'squeel'

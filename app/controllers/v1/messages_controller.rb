@@ -1,4 +1,4 @@
-class MessagesController < ApiController
+class V1::MessagesController < V1::ApiController
   jsonp
   
   before_filter :require_login

@@ -1,4 +1,4 @@
-class ApiController < RocketPants::Base
+class V1::ApiController < RocketPants::Base
   before_filter :set_user
   before_filter :current_user_me
 

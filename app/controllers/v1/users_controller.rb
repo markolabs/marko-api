@@ -1,4 +1,4 @@
-class UsersController < ApiController
+class V1::UsersController < V1::ApiController
   before_filter :require_login, except: [:create]
 
   def show

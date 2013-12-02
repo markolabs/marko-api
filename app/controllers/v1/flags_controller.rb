@@ -1,4 +1,4 @@
-class FlagsController < ApiController
+class V1::FlagsController < V1::ApiController
   before_filter :require_login
 
   def create

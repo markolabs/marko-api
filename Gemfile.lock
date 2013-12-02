@@ -369,5 +369,6 @@ DEPENDENCIES
   taps
   unicorn
   unicorn-rails
+  uuidtools
   will_paginate
   zero_push

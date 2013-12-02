@@ -1,4 +1,4 @@
-class LikesController < ApiController
+class V1::LikesController < V1::ApiController
   before_filter :require_login
 
   def show
