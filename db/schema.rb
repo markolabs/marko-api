@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126015358) do
+ActiveRecord::Schema.define(:version => 20131129114325) do
+
+  create_table "devices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "devices", ["user_id"], :name => "index_devices_on_user_id"
 
   create_table "flags", :force => true do |t|
     t.integer  "user_id"

@@ -18,6 +18,7 @@ gem 'taps'
 # gem 'redis-objects'
 
 # ACTIVE RECORD
+gem 'activemodel'
 gem 'acts_as_paranoid'
 gem 'squeel'
 gem 'rgeo-activerecord'
@@ -95,6 +96,9 @@ group :production do
   gem 'iron_mq'
   gem 'delayed_job_ironmq'
 end
+
+# APPLE PUSH
+gem 'zero_push'
 
 # MONITORING
 gem 'honeybadger'
