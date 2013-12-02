@@ -2,7 +2,7 @@ class V2::UsersController < V2::ApiController
   before_filter :require_login, except: [:index, :create]
 
   def index
-    user = User.find_by_fb_user_id!(params[:fb_user_id])
+    user = User.where(params[:user]).first!
     expose user
   end
 
