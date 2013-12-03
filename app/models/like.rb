@@ -18,4 +18,10 @@ class Like < ActiveRecord::Base
   
   validates :user_id, presence: true, numericality: true, uniqueness: { scope: :message_id }
   validates :message_id, presence: true, numericality: true
+
+  after_create :notify
+
+  def notify
+    self.message.user.send_notification("#{self.username} liked your mark!", {message_id: self.message.id})
+  end
 end

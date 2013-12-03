@@ -11,7 +11,7 @@ class V2::LikesController < V2::ApiController
     message = Message.find(params[:message_id])
     like = message.likes << @current_user
 
-    message.user.send_notification("#{@current_user.username} liked your mark!", {message_id: message.id})
+    # message.user.send_notification("#{@current_user.username} liked your mark!", {message_id: message.id})
 
     expose like
   end
