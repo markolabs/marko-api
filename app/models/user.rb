@@ -43,6 +43,15 @@ class User < ActiveRecord::Base
   has_many :sent_drops, through: :sent_drop_joins, source: :message
   has_many :received_drops, through: :received_drop_joins, source: :message
 
+  def send_notification(text, info={})
+    ZeroPush.notify({
+      device_tokens: self.devices.collect(&:token),
+      alert: text,
+      sound: "default",
+      info: info.to_json
+    })
+  end
+
   def fb_user
     return nil if self.fb_token.nil?
     user = FbGraph::User.me(self.fb_token)
