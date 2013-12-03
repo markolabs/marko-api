@@ -8,7 +8,11 @@ class V2::LikesController < V2::ApiController
   end
 
   def create
-    like = Message.find(params[:message_id]).likes << @current_user
+    message = Message.find(params[:message_id])
+    like = message.likes << @current_user
+
+    message.user.send_notification("#{@current_user.username} liked your mark!", {message_id: message.id})
+
     expose like
   end
 
