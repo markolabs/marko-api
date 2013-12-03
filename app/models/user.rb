@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
   has_many :like_joins, class_name: "Like", dependent: :destroy
   has_many :likes, through: :like_joins, source: :message
 
+  has_many :flag_joins, class_name: "Flag", dependent: :destroy
+  has_many :flags, through: :flag_joins, source: :message
+
   has_many :messages, dependent: :destroy
 
   has_many :relationships, foreign_key: "friend_id", dependent: :destroy
@@ -30,9 +33,15 @@ class User < ActiveRecord::Base
   has_many :friends, through: :relationships, source: :user
 
   has_many :pings
+  has_many :impressions
 
   has_many :sessions
   has_many :devices
+
+  has_many :sent_drop_joins, class_name: "Drop", foreign_key: "sender_id", dependent: :destroy
+  has_many :received_drop_joins, class_name: "Drop", foreign_key: "receiver_id", dependent: :destroy
+  has_many :sent_drops, through: :sent_drop_joins, source: :message
+  has_many :received_drops, through: :received_drop_joins, source: :message
 
   def fb_user
     return nil if self.fb_token.nil?

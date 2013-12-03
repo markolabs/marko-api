@@ -11,16 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202100007) do
+ActiveRecord::Schema.define(:version => 20131203041007) do
 
   create_table "devices", :force => true do |t|
     t.integer  "user_id"
     t.string   "token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "devices", ["user_id"], :name => "index_devices_on_user_id"
+
+  create_table "drops", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "message_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.time     "deleted_at"
+  end
+
+  add_index "drops", ["message_id"], :name => "index_drops_on_message_id"
+  add_index "drops", ["receiver_id"], :name => "index_drops_on_receiver_id"
+  add_index "drops", ["sender_id"], :name => "index_drops_on_sender_id"
 
   create_table "flags", :force => true do |t|
     t.integer  "user_id"
@@ -84,8 +98,12 @@ ActiveRecord::Schema.define(:version => 20131202100007) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.time     "deleted_at"
+    t.boolean  "background"
+    t.integer  "device_id"
   end
 
+  add_index "pings", ["background"], :name => "index_pings_on_background"
+  add_index "pings", ["device_id"], :name => "index_pings_on_device_id"
   add_index "pings", ["user_id"], :name => "index_pings_on_user_id"
 
   create_table "relationships", :force => true do |t|
@@ -106,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20131202100007) do
     t.integer  "device_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.time     "deleted_at"
   end
 
   add_index "sessions", ["device_id"], :name => "index_sessions_on_device_id"

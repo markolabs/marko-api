@@ -78,7 +78,6 @@ gem 'lograge'
 # DEVELOPMENT ASSISTANCE
 group :development do
   gem 'lol_dba'
-  gem 'railroady'
   gem 'annotate'
 end
 

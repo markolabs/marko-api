@@ -34,6 +34,7 @@ class Message < ActiveRecord::Base
   has_many :flags, through: :flag_joins, source: :user
 
   has_many :impressions
+  has_many :drops
 
   belongs_to :user
 

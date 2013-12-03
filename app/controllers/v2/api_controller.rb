@@ -20,6 +20,14 @@ class V2::ApiController < RocketPants::Base
     end
   end
 
+  def current_device
+    if current_session
+      current_session.device
+    else
+      nil
+    end
+  end
+
   def set_user
     @current_user = current_user
   end
