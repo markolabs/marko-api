@@ -167,9 +167,6 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    oboe (2.3.4.1)
-    oboe-heroku (0.9.0.1)
-      oboe (>= 2.3.3.7)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
@@ -344,7 +341,6 @@ DEPENDENCIES
   lograge
   lol_dba
   memcachier
-  oboe-heroku
   omniauth
   omniauth-facebook
   opro

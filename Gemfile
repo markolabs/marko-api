@@ -104,7 +104,7 @@ gem 'zero_push'
 # MONITORING
 # gem 'honeybadger'
 gem 'appsignal'
-gem 'oboe-heroku'
+# gem 'oboe-heroku'
 # gem 'newrelic_rpm'
 
 # EXTERNAL API LIBRARIES
