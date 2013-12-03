@@ -5,8 +5,9 @@ ruby '2.0.0'
 gem 'rails', '3.2.13'
 
 # SERVER
-gem 'unicorn'
-gem 'unicorn-rails'
+# gem 'unicorn'
+# gem 'unicorn-rails'
+gem 'puma'
 group :test, :development do
   gem 'foreman'
 end
@@ -101,8 +102,9 @@ end
 gem 'zero_push'
 
 # MONITORING
-gem 'honeybadger'
-# gem 'appsignal'
+# gem 'honeybadger'
+gem 'appsignal'
+gem 'oboe-heroku'
 # gem 'newrelic_rpm'
 
 # EXTERNAL API LIBRARIES
