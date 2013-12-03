@@ -45,6 +45,9 @@ class V2::MessagesController < V2::ApiController
     # hide messages that the current_user has flagged
     messages = messages.hide_flags(@current_user)
 
+    # cache the request until there is somethign new added to the messages collection
+    fresh_when last_modified: messages.maximum(:updated_at), public: true
+
     paginated messages
   end
 
