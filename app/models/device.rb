@@ -20,6 +20,8 @@ class Device < ActiveRecord::Base
   validates :user, presence: true
 
   def send_notification(text, info={})
+    return false if self.token.blank?
+
     ZeroPush.notify({
       device_tokens: [self.token],
       alert: text,
@@ -28,5 +30,5 @@ class Device < ActiveRecord::Base
     })
   end
   # handle_asynchronously :send_notification
-  
+
 end

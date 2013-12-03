@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   has_many :received_drops, through: :received_drop_joins, source: :message
 
   def send_notification(text, info={})
+    return false if self.devices.blank?
+
     ZeroPush.notify({
       device_tokens: self.devices.collect(&:token),
       alert: text,
