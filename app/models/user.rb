@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
       info: info.to_json
     })
   end
-  handle_asynchronously :send_notification
+  # handle_asynchronously :send_notification
 
   def fb_user
     return nil if self.fb_token.nil?

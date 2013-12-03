@@ -27,6 +27,6 @@ class Device < ActiveRecord::Base
       info: info.to_json
     })
   end
-  handle_asynchronously :send_notification
+  # handle_asynchronously :send_notification
   
 end
