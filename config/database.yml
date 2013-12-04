@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   database: spek_dev
   host: localhost
-  pool: 5
+  pool: 16
   timeout: 5000
   postgis_extension: postgis
 
@@ -10,7 +10,7 @@ test:
   adapter: postgresql
   database: spek_test
   host: localhost
-  pool: 5
+  pool: 16
   timeout: 5000
   postgis_extension: postgis
 
@@ -19,6 +19,6 @@ production:
   adapter: postgis
   database: spek_production
   host: localhost
-  pool: 5
+  pool: 16
   timeout: 5000
   postgis_extension: postgis
