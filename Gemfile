@@ -7,7 +7,8 @@ gem 'rails', '3.2.13'
 # SERVER
 # gem 'unicorn'
 # gem 'unicorn-rails'
-gem 'puma'
+# gem 'puma'
+gem 'passenger'
 group :test, :development do
   gem 'foreman'
 end
