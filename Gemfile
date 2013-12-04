@@ -35,10 +35,6 @@ gem 'rocket_pants'
 gem 'active_model_serializers'
 
 # AUTHENTICATION
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'opro'
 gem 'cancan'
 
 # FILE STORAGE
