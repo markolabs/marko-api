@@ -41,7 +41,7 @@ Spek::Application.configure do
   config.assets.digest = true
 
   # Tame the logs
-  config.lograge.enabled = true
+  # config.lograge.enabled = true
 
   
 
