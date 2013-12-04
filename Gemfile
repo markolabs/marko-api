@@ -32,6 +32,7 @@ gem 'rgeo'
 gem 'geocoder'
 
 # JSON API
+gem 'oj'
 gem 'rocket_pants'
 gem 'active_model_serializers'
 
