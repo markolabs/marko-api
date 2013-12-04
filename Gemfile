@@ -101,7 +101,7 @@ gem 'zero_push'
 # gem 'honeybadger'
 gem 'appsignal'
 gem 'oboe-heroku'
-# gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 
 # EXTERNAL API LIBRARIES
 gem 'fb_graph'
