@@ -43,7 +43,7 @@ class V1::MessagesController < V1::ApiController
     messages = messages.from_friends(@current_user) if @filter == "friends"
     
     # hide messages that the current_user has flagged
-    messages = messages.hide_flags(@current_user)
+    # messages = messages.hide_flags(@current_user)
 
     paginated messages
   end
