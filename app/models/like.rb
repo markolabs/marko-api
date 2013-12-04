@@ -23,7 +23,7 @@ class Like < ActiveRecord::Base
 
   def notify
     Thread.new do
-      self.message.user.send_notification("#{self.user.username} liked your mark!", {message_id: self.message.id})
+      self.message.user.send_notification("#{self.user.username} discovered and liked your mark!", {message_id: self.message.id})
     end
   end
 end
