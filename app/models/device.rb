@@ -22,12 +22,14 @@ class Device < ActiveRecord::Base
   def send_notification(text, info={})
     return false if self.token.blank?
 
-    ZeroPush.notify({
-      device_tokens: [self.token],
-      alert: text,
-      sound: "default",
-      info: info.to_json
-    })
+    Thread.new do
+      ZeroPush.notify({
+        device_tokens: [self.token],
+        alert: text,
+        sound: "default",
+        info: info.to_json
+      })
+    end
   end
   # handle_asynchronously :send_notification
 

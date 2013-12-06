@@ -104,9 +104,15 @@ gem 'zero_push'
 # gem 'appsignal'
 gem 'oboe-heroku'
 gem 'newrelic_rpm'
+gem 'rocket_pants-rpm'
 
 # EXTERNAL API LIBRARIES
 gem 'fb_graph'
 
 # HEROKU
 gem 'rails_12factor'
+
+# ADMIN INTERFACE
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'sass-rails'
+gem 'meta_search'

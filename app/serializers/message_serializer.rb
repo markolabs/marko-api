@@ -31,16 +31,6 @@ class MessageSerializer < ActiveModel::Serializer
     }
   end
 
-  def distance
-    if object.respond_to? :distance
-      distance = object.distance.to_f
-      distance = distance.round(3)
-      return distance
-    else
-      return nil
-    end
-  end
-
   def message_type
     if (caption && image)
       # "image-text"

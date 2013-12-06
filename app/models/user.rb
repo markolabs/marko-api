@@ -1,22 +1,30 @@
 # == Schema Information
-# == Schema Information
 #
 # Table name: users
 #
-#  id               :integer          not null, primary key
-#  fb_user_id       :integer
-#  username         :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  fb_token         :string(255)
-#  fb_token_expired :boolean
-#  deleted_at       :time
+#  id                  :integer          not null, primary key
+#  fb_user_id          :integer
+#  username            :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  fb_token            :string(255)
+#  fb_token_expired    :boolean
+#  deleted_at          :time
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  first_name          :string(255)
+#  last_name           :string(255)
 #
 
 class User < ActiveRecord::Base
   acts_as_paranoid
 
   attr_accessible :fb_user_id, :username, :fb_token, :fb_token_expired
+
+  has_attached_file :avatar, :preserve_files => true
+  # process_in_background :avatar
 
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
@@ -47,12 +55,14 @@ class User < ActiveRecord::Base
   def send_notification(text, info={})
     return false if self.devices.blank?
 
-    ZeroPush.notify({
-      device_tokens: self.devices.collect(&:token),
-      alert: text,
-      sound: "default",
-      info: info.to_json
-    })
+    Thread.new do
+      ZeroPush.notify({
+        device_tokens: self.devices.collect(&:token),
+        alert: text,
+        sound: "default",
+        info: info.to_json
+      })
+    end
   end
   # handle_asynchronously :send_notification
 
@@ -69,6 +79,19 @@ class User < ActiveRecord::Base
     end
 
     return user
+  end
+
+  def get_avatar_from_facebook
+    self.avatar = open("http://graph.facebook.com/#{self.fb_user_id}/picture")
+    self.avatar.instance_write(:file_name, "#{self.username}-avatar")
+  end
+
+  def get_name_from_facebook
+    user = FbGraph::User.fetch(self.fb_user_id)
+    self.first_name = user.first_name
+    self.last_name = user.last_name
+
+    "#{self.first_name} #{self.last_name}"
   end
 
   def fb_friends
