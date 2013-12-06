@@ -102,7 +102,7 @@ gem 'zero_push'
 # MONITORING
 # gem 'honeybadger'
 # gem 'appsignal'
-gem 'oboe-heroku'
+# gem 'oboe-heroku'
 gem 'newrelic_rpm'
 gem 'rocket_pants-rpm'
 
@@ -111,8 +111,3 @@ gem 'fb_graph'
 
 # HEROKU
 gem 'rails_12factor'
-
-# ADMIN INTERFACE
-gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'sass-rails'
-gem 'meta_search'

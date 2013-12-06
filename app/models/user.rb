@@ -87,9 +87,13 @@ class User < ActiveRecord::Base
   end
 
   def get_name_from_facebook
-    user = FbGraph::User.fetch(self.fb_user_id)
-    self.first_name = user.first_name
-    self.last_name = user.last_name
+    begin
+      user = FbGraph::User.fetch(self.fb_user_id)
+      self.first_name = user.first_name
+      self.last_name = user.last_name
+    rescue Exception => msg
+      return nil
+    end
 
     "#{self.first_name} #{self.last_name}"
   end
