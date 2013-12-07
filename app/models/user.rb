@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   attr_accessible :fb_user_id, :username, :fb_token, :fb_token_expired
 
   has_attached_file :avatar, :preserve_files => true
-  # process_in_background :avatar
+  process_in_background :avatar
 
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
