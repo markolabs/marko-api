@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   has_many :received_drops, through: :received_drop_joins, source: :message
 
   before_create :get_name_from_facebook
-  before_create :get_avatar_from_facebook
+  # before_create :get_avatar_from_facebook
 
   def send_notification(text, info={})
     return false if self.devices.blank?
