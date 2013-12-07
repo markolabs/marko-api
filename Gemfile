@@ -78,7 +78,6 @@ gem 'lograge'
 group :development do
   gem 'lol_dba'
   gem 'annotate'
-  gem "bullet"
 end
 
 # GUARD
