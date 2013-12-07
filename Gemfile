@@ -78,6 +78,7 @@ gem 'lograge'
 group :development do
   gem 'lol_dba'
   gem 'annotate'
+  gem "bullet"
 end
 
 # GUARD
@@ -104,6 +105,7 @@ gem 'zero_push'
 # gem 'appsignal'
 # gem 'oboe-heroku'
 gem 'newrelic_rpm'
+gem 'heroku-true-relic'
 gem 'rocket_pants-rpm'
 
 # EXTERNAL API LIBRARIES
