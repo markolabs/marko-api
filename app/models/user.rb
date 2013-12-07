@@ -52,6 +52,9 @@ class User < ActiveRecord::Base
   has_many :sent_drops, through: :sent_drop_joins, source: :message
   has_many :received_drops, through: :received_drop_joins, source: :message
 
+  before_create :get_name_from_facebook
+  before_create :get_avatar_from_facebook
+
   def send_notification(text, info={})
     return false if self.devices.blank?
 
@@ -82,8 +85,12 @@ class User < ActiveRecord::Base
   end
 
   def get_avatar_from_facebook
-    self.avatar = open("http://graph.facebook.com/#{self.fb_user_id}/picture")
-    self.avatar.instance_write(:file_name, "#{self.username}-avatar")
+    begin
+      self.avatar = open("http://graph.facebook.com/#{self.fb_user_id}/picture")
+      self.avatar.instance_write(:file_name, "#{self.username}-avatar")
+    rescue Exception => msg
+      return nil
+    end
   end
 
   def get_name_from_facebook

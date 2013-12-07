@@ -15,6 +15,10 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def avatar
-    object.avatar.url
+    if object.image.exists?
+      object.avatar.url
+    else
+      nil
+    end
   end
 end
