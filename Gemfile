@@ -104,7 +104,6 @@ gem 'zero_push'
 # gem 'appsignal'
 # gem 'oboe-heroku'
 gem 'newrelic_rpm'
-gem 'heroku-true-relic'
 gem 'rocket_pants-rpm'
 
 # EXTERNAL API LIBRARIES

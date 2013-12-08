@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   attr_accessible :fb_user_id, :username, :fb_token, :fb_token_expired
 
   has_attached_file :avatar, :preserve_files => true
-  process_in_background :avatar
+  # process_in_background :avatar
 
   validates :username, presence: true, uniqueness: true
   validates :fb_user_id, presence: true, uniqueness: true, numericality: true
@@ -51,9 +51,6 @@ class User < ActiveRecord::Base
   has_many :received_drop_joins, class_name: "Drop", foreign_key: "receiver_id", dependent: :destroy
   has_many :sent_drops, through: :sent_drop_joins, source: :message
   has_many :received_drops, through: :received_drop_joins, source: :message
-
-  before_create :get_name_from_facebook
-  # before_create :get_avatar_from_facebook
 
   def send_notification(text, info={})
     return false if self.devices.blank?
@@ -85,12 +82,8 @@ class User < ActiveRecord::Base
   end
 
   def get_avatar_from_facebook
-    begin
-      self.avatar = open("http://graph.facebook.com/#{self.fb_user_id}/picture")
-      self.avatar.instance_write(:file_name, "#{self.username}-avatar")
-    rescue Exception => msg
-      return nil
-    end
+    self.avatar = open("http://graph.facebook.com/#{self.fb_user_id}/picture")
+    self.avatar.instance_write(:file_name, "#{self.username}-avatar")
   end
 
   def get_name_from_facebook
