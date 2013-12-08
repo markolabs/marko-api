@@ -2,8 +2,15 @@ class V2::UsersController < V2::ApiController
   before_filter :require_login, except: [:index, :create]
 
   def index
-    user = User.where(params[:user]).first!
-    expose user
+    params[:page] ||= 1
+
+    if params.includes? "user"
+      users = User.where(params[:user]).first!
+    else
+      users = User.page(params[:page])
+    end
+
+    expose users
   end
 
   def show
