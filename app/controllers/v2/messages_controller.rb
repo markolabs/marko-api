@@ -3,8 +3,6 @@ class V2::MessagesController < V2::ApiController
   
   before_filter :require_login
 
-  caches_action :index, :everyone, :friends, :show, cache_path: Proc.new { |c| c.params }
-
   def index
     # set page to 1 by default
     params[:page] ||= 1
