@@ -5,6 +5,7 @@ Spek::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_host_alias => 'cdn.markoapp.com',
+    :url => ':s3_alias_url',
     :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
     :s3_credentials => {
       :bucket => ENV['AWS_BUCKET'],
