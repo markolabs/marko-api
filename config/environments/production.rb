@@ -6,7 +6,7 @@ Spek::Application.configure do
     :storage => :s3,
     :s3_host_alias => 'cdn.markoapp.com',
     :url => ':s3_alias_url',
-    :path => ':class/:attachment/:id_partition/:style/:filename',
+    :path => '/:class/:attachment/:id_partition/:style/:filename',
     :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
     :s3_credentials => {
       :bucket => ENV['AWS_BUCKET'],

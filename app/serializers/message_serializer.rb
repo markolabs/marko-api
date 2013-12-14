@@ -15,7 +15,7 @@ class MessageSerializer < ActiveModel::Serializer
     if object.image.exists?
       if object.image_processing?
         ## this is hacky -- must fix
-        return "http://s3.amazonaws.com/SpekApp" + object.image.path
+        return "http://cdn.markoapp.com/" + object.image.path
       else
         return object.image.url(:square)
       end
