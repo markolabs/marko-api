@@ -8,4 +8,8 @@ class V2::SessionsController < V2::ApiController
 
     expose session
   end
+
+  def destroy
+    current_session.destroy
+  end
 end
