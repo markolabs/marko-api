@@ -1,7 +1,6 @@
-if Rails.env.production?
+if ENV["ZEROPUSH_TOKEN"] == "PROD"
   ZeroPush.auth_token = ENV["ZEROPUSH_PROD_TOKEN"]
-else
+elsif ENV["ZEROPUSH_TOKEN"] == "DEV"
   ZeroPush.auth_token = ENV["ZEROPUSH_DEV_TOKEN"]
 end
 
-# ZeroPush.auth_token = ENV["ZEROPUSH_DEV_TOKEN"]
