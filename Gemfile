@@ -29,7 +29,6 @@ gem 'activerecord-postgis-adapter'
 
 # DATABASE STRUCTURE
 
-
 # LOCATION
 gem 'rgeo'
 gem 'geocoder'
