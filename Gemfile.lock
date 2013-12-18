@@ -294,6 +294,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_ironmq
   delayed_paperclip
+  dotenv
   exifr
   factory_girl_rails
   faker

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+# ruby '2.0.0'
 
 # FRAMEWORK
 gem 'rails', '3.2.13'
@@ -26,6 +26,9 @@ gem 'acts_as_paranoid'
 gem 'squeel'
 gem 'rgeo-activerecord'
 gem 'activerecord-postgis-adapter'
+
+# DATABASE STRUCTURE
+
 
 # LOCATION
 gem 'rgeo'
@@ -78,6 +81,7 @@ gem 'lograge'
 group :development do
   gem 'lol_dba'
   gem 'annotate'
+  gem 'dotenv'
 end
 
 # GUARD

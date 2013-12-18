@@ -34,6 +34,20 @@ module Spek
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Paperclip defaults to storage on S3
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_host_alias => 'cdn.markoapp.com',
+      :url => ':s3_alias_url',
+      :path => '/:class/:attachment/:id_partition/:style/:filename',
+      :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
+      :s3_credentials => {
+        :bucket => ENV['AWS_BUCKET'],
+        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      }
+    }
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 

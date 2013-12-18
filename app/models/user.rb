@@ -7,6 +7,9 @@
 #  username            :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  provider            :string(255)
+#  uid                 :string(255)
+#  name                :string(255)
 #  fb_token            :string(255)
 #  fb_token_expired    :boolean
 #  deleted_at          :time
