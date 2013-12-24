@@ -10,6 +10,7 @@ class V2::SessionsController < V2::ApiController
   end
 
   def destroy
-    current_session.destroy if current_session.exists?
+    session = Session.where()
+    current_session.destroy
   end
 end
