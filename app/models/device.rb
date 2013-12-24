@@ -22,7 +22,7 @@ class Device < ActiveRecord::Base
   after_create :register_device
 
   def register_device
-    ZeroPush.register(self.toke)
+    ZeroPush.register(self.token)
   end
 
   def send_notification(text, info={})
