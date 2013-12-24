@@ -19,6 +19,12 @@ class Device < ActiveRecord::Base
   validates :token, presence: true
   validates :user, presence: true
 
+  after_create :register_device
+
+  def register_device
+    ZeroPush.register(self.toke)
+  end
+
   def send_notification(text, info={})
     return false if self.token.blank?
 

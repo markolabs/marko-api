@@ -16,8 +16,8 @@ end
 # DB
 gem 'pg', '~> 0.16.0'
 gem 'taps'
-# gem 'redis'
-# gem 'redis-objects'
+gem 'redis'
+gem 'redis-objects'
 
 # ACTIVE RECORD
 gem 'uuidtools'
