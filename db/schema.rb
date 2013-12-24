@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131206165246) do
+ActiveRecord::Schema.define(:version => 20131224063232) do
 
   create_table "devices", :force => true do |t|
     t.integer  "user_id"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20131206165246) do
   create_table "messages", :force => true do |t|
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -90,6 +89,55 @@ ActiveRecord::Schema.define(:version => 20131206165246) do
   end
 
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
+
+  create_table "notifications", :force => true do |t|
+    t.string   "text"
+    t.integer  "actor_id"
+    t.string   "actor_type"
+    t.integer  "object_id"
+    t.string   "object_type"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "verb"
+  end
+
+  add_index "notifications", ["actor_id"], :name => "index_notifications_on_actor_id"
+  add_index "notifications", ["actor_type", "actor_id"], :name => "index_notifications_on_actor_type_and_actor_id"
+  add_index "notifications", ["object_id"], :name => "index_notifications_on_object_id"
+  add_index "notifications", ["object_type", "object_id"], :name => "index_notifications_on_object_type_and_object_id"
+  add_index "notifications", ["target_id"], :name => "index_notifications_on_target_id"
+  add_index "notifications", ["target_type", "target_id"], :name => "index_notifications_on_target_type_and_target_id"
+
+  create_table "opro_auth_grants", :force => true do |t|
+    t.string   "code"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.text     "permissions"
+    t.datetime "access_token_expires_at"
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "opro_auth_grants", ["access_token"], :name => "index_opro_auth_grants_on_access_token", :unique => true
+  add_index "opro_auth_grants", ["code"], :name => "index_opro_auth_grants_on_code", :unique => true
+  add_index "opro_auth_grants", ["refresh_token"], :name => "index_opro_auth_grants_on_refresh_token", :unique => true
+
+  create_table "opro_client_apps", :force => true do |t|
+    t.string   "name"
+    t.string   "app_id"
+    t.string   "app_secret"
+    t.text     "permissions"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "opro_client_apps", ["app_id", "app_secret"], :name => "index_opro_client_apps_on_app_id_and_app_secret", :unique => true
+  add_index "opro_client_apps", ["app_id"], :name => "index_opro_client_apps_on_app_id", :unique => true
 
   create_table "pings", :force => true do |t|
     t.float    "latitude"
@@ -136,6 +184,9 @@ ActiveRecord::Schema.define(:version => 20131206165246) do
     t.string   "username"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
     t.string   "fb_token"
     t.boolean  "fb_token_expired"
     t.time     "deleted_at"
