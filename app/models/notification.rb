@@ -1,5 +1,4 @@
 class Notification < ActiveRecord::Base
-<<<<<<< HEAD
   attr_accessible :actor, :object, :target
 
   belongs_to :actor, polymorphic: true
