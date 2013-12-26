@@ -6,7 +6,6 @@ class Notification < ActiveRecord::Base
   belongs_to :object, polymorphic: true
   belongs_to :target, polymorphic: true
 
-=======
   belongs_to :sender, class_name: "User"
   belongs_to :receiver, class_name: "User"
   belongs_to :target, polymorphic: true
@@ -25,5 +24,4 @@ class Notification < ActiveRecord::Base
     end
   end
 
->>>>>>> dev
 end
