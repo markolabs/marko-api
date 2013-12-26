@@ -10,7 +10,6 @@ class V2::SessionsController < V2::ApiController
   end
 
   def destroy
-    session = Session.where()
-    current_session.destroy
+    current_session.destroy unless current_session.nil?
   end
 end
