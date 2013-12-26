@@ -22,6 +22,12 @@ class Like < ActiveRecord::Base
   after_create :notify
 
   def notify
+    Notification.create({
+      verb: "like",
+      target: self.message,
+      sender: self.user,
+      receiver: self.message.user
+    })
     self.message.user.send_notification("#{self.user.username} liked your mark!", {type: "like", message_id: self.message.id})
   end
 end
