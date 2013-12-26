@@ -30,6 +30,12 @@ Spek::Application.routes.draw do
         get 'everyone'
       end
     end 
+    resources :notifications, only: [:index, :show] do
+      member do
+        post 'read'
+        post 'unread'
+      end
+    end
     resource :sessions, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :destroy] do
       resources :messages, only: [:index]
