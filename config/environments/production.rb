@@ -31,11 +31,7 @@ Spek::Application.configure do
   config.assets.digest = true
 
   # Tame the logs
-  if ENV["LOGRAGE"] == "TRUE"
-    config.lograge.enabled = true
-  else
-    config.lograge.enabled = false
-  end
+  config.lograge.enabled = true
 
 
   # Defaults to nil and saved in location specified by config.assets.prefix
