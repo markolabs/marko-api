@@ -25,7 +25,7 @@ class Notification < ActiveRecord::Base
   belongs_to :receiver, class_name: "User"
   belongs_to :target, polymorphic: true
 
-  validates :target, uniqueness: {scope: [:verb, :sender, :receiver]}
+  validates :target_id, uniqueness: {scope: [:target_type, :verb, :sender_id, :receiver_id]}
 
   def text
     if self.verb == "like"
