@@ -31,9 +31,12 @@ Spek::Application.configure do
   config.assets.digest = true
 
   # Tame the logs
-  config.lograge.enabled = true
+  if ENV["LOGRAGE"] == "TRUE"
+    config.lograge.enabled = true
+  else
+    config.lograge.enabled = false
+  end
 
-  
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
