@@ -22,8 +22,6 @@
 #
 
 class User < ActiveRecord::Base
-  # include Redis::Objects
-
   acts_as_paranoid
 
   attr_accessible :fb_user_id, :username, :fb_token, :fb_token_expired
@@ -56,8 +54,6 @@ class User < ActiveRecord::Base
   has_many :received_drop_joins, class_name: "Drop", foreign_key: "receiver_id", dependent: :destroy
   has_many :sent_drops, through: :sent_drop_joins, source: :message
   has_many :received_drops, through: :received_drop_joins, source: :message
-
-  # list :notifications, marshal: true
 
   before_create :get_name_from_facebook
 
