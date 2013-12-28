@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226012714) do
+ActiveRecord::Schema.define(:version => 20131228035835) do
 
   create_table "devices", :force => true do |t|
     t.integer  "user_id"
@@ -91,39 +91,21 @@ ActiveRecord::Schema.define(:version => 20131226012714) do
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "notifications", :force => true do |t|
-<<<<<<< HEAD
-    t.string   "text"
-    t.integer  "actor_id"
-    t.string   "actor_type"
-    t.integer  "object_id"
-    t.string   "object_type"
-    t.integer  "target_id"
-    t.string   "target_type"
-=======
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.integer  "target_id"
     t.string   "target_type"
     t.boolean  "read"
->>>>>>> dev
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "verb"
+    t.time     "deleted_at"
   end
 
-<<<<<<< HEAD
-  add_index "notifications", ["actor_id"], :name => "index_notifications_on_actor_id"
-  add_index "notifications", ["actor_type", "actor_id"], :name => "index_notifications_on_actor_type_and_actor_id"
-  add_index "notifications", ["object_id"], :name => "index_notifications_on_object_id"
-  add_index "notifications", ["object_type", "object_id"], :name => "index_notifications_on_object_type_and_object_id"
-  add_index "notifications", ["target_id"], :name => "index_notifications_on_target_id"
-  add_index "notifications", ["target_type", "target_id"], :name => "index_notifications_on_target_type_and_target_id"
-=======
   add_index "notifications", ["receiver_id"], :name => "index_notifications_on_receiver_id"
   add_index "notifications", ["sender_id"], :name => "index_notifications_on_sender_id"
   add_index "notifications", ["target_id"], :name => "index_notifications_on_target_id"
   add_index "notifications", ["target_type"], :name => "index_notifications_on_target_type"
->>>>>>> dev
 
   create_table "opro_auth_grants", :force => true do |t|
     t.string   "code"

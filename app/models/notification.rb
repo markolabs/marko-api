@@ -11,6 +11,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  verb        :string(255)
+#  deleted_at  :time
 #
 
 class Notification < ActiveRecord::Base
