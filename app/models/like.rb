@@ -11,7 +11,7 @@
 #
 
 class Like < ActiveRecord::Base
-  acts_as_paranoid
+  # acts_as_paranoid
 
   belongs_to :message, counter_cache: true, touch: true
   belongs_to :user
