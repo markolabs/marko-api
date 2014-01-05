@@ -37,12 +37,12 @@ class Message < ActiveRecord::Base
 
   belongs_to :user
 
-  # has_attached_file :image, :styles => { :square => "640x640#" }, :preserve_files => true
-  # process_in_background :image
+  has_attached_file :image, :styles => { :square => "640x640#" }, :preserve_files => true
+  process_in_background :image
 
-  has_attached_file :image, preserve_files: true
-  before_create :set_image_as_processing
-  after_create :process_image
+  # has_attached_file :image, preserve_files: true
+  # before_create :set_image_as_processing
+  # after_create :process_image
 
   reverse_geocoded_by :latitude, :longitude
 
