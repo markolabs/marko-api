@@ -111,6 +111,8 @@ gem 'newrelic_rpm'
 gem 'rocket_pants-rpm'
 
 # EXTERNAL API LIBRARIES
+gem 'transloadit'
+gem 'iron_worker_ng'
 gem 'fb_graph'
 
 # HEROKU

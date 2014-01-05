@@ -1,0 +1,9 @@
+runtime "ruby"
+name "ProcessImage"
+exec "process_image.rb"
+
+gem "activerecord"
+gem "pg"
+gem "paperclip"
+
+file "../app/models/message.rb"
