@@ -5,7 +5,7 @@ class MessageObserver < ActiveRecord::Observer
     mixpanel.track "Message Created", {
       distinct_id: message.user_id, 
       latitude: message.latitude,
-      longitude: message.longitude
+      longitude: message.longitude,
       message_id: message.id
     }
   end
