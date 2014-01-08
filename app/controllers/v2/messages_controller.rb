@@ -10,6 +10,10 @@ class V2::MessagesController < V2::ApiController
     # initiate the message query with a page request
     messages = Message.page(params[:page])
 
+    if (params.has_key? :per_page)
+      messages = messages.per_page(params[:per_page].to_i)
+    end
+
     unless (params[:latitude].nil? && params[:longitude].nil?)
       # set radius equal to env variable if not passed as paramater
       params[:radius] ||= ENV['DEFAULT_RADIUS'].to_f
