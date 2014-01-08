@@ -109,10 +109,11 @@ gem 'zero_push'
 # gem 'oboe-heroku'
 gem 'newrelic_rpm'
 gem 'rocket_pants-rpm'
+gem 'mixpanel-rails'
 
 # EXTERNAL API LIBRARIES
 gem 'transloadit'
-gem 'iron_worker_ng'
+# gem 'iron_worker_ng'
 gem 'fb_graph'
 
 # HEROKU

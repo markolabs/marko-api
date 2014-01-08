@@ -1,1 +1,1 @@
-$iron_worker = IronWorkerNG::Client.new
+# $iron_worker = IronWorkerNG::Client.new
