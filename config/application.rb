@@ -24,7 +24,9 @@ module Spek
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    config.active_record.observers = :notification_observer
+    config.active_record.observers = :device_observer, :drop_observer, :flag_observer, 
+    :impression_observer, :like_observer, :message_observer, :notification_observer, 
+    :ping_observer, :relationship_observer, :session_observer, :user_observer
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
