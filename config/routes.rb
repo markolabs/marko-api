@@ -39,12 +39,12 @@ Spek::Application.routes.draw do
     resources :pings, only: [:create]
     resource :sessions, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :destroy] do
+      resources :relationships
       resources :messages, only: [:index]
       member do
         get 'likes'
       end
     end
-    resource :relationships
   end
 
 end

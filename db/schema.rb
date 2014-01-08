@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131228035835) do
+ActiveRecord::Schema.define(:version => 20140108193306) do
 
   create_table "devices", :force => true do |t|
     t.integer  "user_id"
@@ -157,8 +157,12 @@ ActiveRecord::Schema.define(:version => 20131228035835) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.time     "deleted_at"
+    t.boolean  "active"
+    t.boolean  "fb_friend"
   end
 
+  add_index "relationships", ["active"], :name => "index_relationships_on_active"
+  add_index "relationships", ["fb_friend"], :name => "index_relationships_on_fb_friend"
   add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
   add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"

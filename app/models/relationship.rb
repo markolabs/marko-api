@@ -8,6 +8,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  deleted_at :time
+#  active     :boolean
+#  fb_friend  :boolean
 #
 
 class Relationship < ActiveRecord::Base
