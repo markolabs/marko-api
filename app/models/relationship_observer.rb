@@ -1,7 +1,6 @@
 class RelationshipObserver < ActiveRecord::Observer
   def after_create(relationship)
-    $mixpanel.track "Relationship Created", {
-      distinct_id: relationship.user_id,
+    $mixpanel.track relationship.user_id, "Relationship Created", {
       friend_id: relationship.friend_id
     }
   end

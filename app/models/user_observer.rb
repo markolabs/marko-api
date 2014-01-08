@@ -1,8 +1,6 @@
 class UserObserver < ActiveRecord::Observer
   def after_create(user)
-    $mixpanel.track "User Created", {
-      distinct_id: user.id
-    }
+    $mixpanel.track user.id, "User Created"
 
     $mixpanel.people.set user.id, {
       "$first_name" => user.first_name,

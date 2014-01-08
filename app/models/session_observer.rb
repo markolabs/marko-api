@@ -1,14 +1,12 @@
 class SessionObserver < ActiveRecord::Observer
   def after_create(session)
-    $mixpanel.track "Session Created", {
-      distinct_id: session.user_id,
+    $mixpanel.track session.user_id, "Session Created", {
       device_id: session.device_id
     }
   end
 
   def after_destroy(session)
-    $mixpanel.track "Session Destroyed", {
-      distinct_id: session.user_id,
+    $mixpanel.track session.user_id, "Session Destroyed", {
       device_id: session.device_id
     }
   end
