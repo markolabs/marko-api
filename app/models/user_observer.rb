@@ -7,7 +7,7 @@ class UserObserver < ActiveRecord::Observer
     Thread.new do
       $mixpanel.people.set user.id, {
         "$first_name" => user.first_name,
-        "$last_name" => user.first_name,
+        "$last_name" => user.last_name,
         "Username" => user.username,
         "Facebook ID" => user.fb_user_id
       }
@@ -18,7 +18,7 @@ class UserObserver < ActiveRecord::Observer
     Thread.new do
       $mixpanel.people.set user.id, {
         "$first_name" => user.first_name,
-        "$last_name" => user.first_name,
+        "$last_name" => user.last_name,
         "Username" => user.username,
         "Facebook ID" => user.fb_user_id
       }
