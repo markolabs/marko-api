@@ -1,8 +1,6 @@
-class DeviceObserver < ActiveRecord::Observer
-  include Mixpanel::Helper
-  
+class DeviceObserver < ActiveRecord::Observer  
   def after_create(device)
-    mixpanel.track "Device Registered", {
+    $mixpanel.track "Device Registered", {
       distinct_id: device.user_id, 
       device_id: device.id
     }

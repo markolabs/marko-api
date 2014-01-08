@@ -1,12 +1,10 @@
 class UserObserver < ActiveRecord::Observer
-  include Mixpanel::Helper
-
   def after_create(user)
-    mixpanel.track "User Created", {
+    $mixpanel.track "User Created", {
       distinct_id: user.id
     }
 
-    mixpanel.track.people user.id, {
+    $mixpanel.people.set user.id, {
       "$first_name" => user.first_name,
       "$last_name" => user.first_name,
       "Signup" => user.created_at,
@@ -16,7 +14,7 @@ class UserObserver < ActiveRecord::Observer
   end
 
   def after_save(user)
-    mixpanel.track.people user.id, {
+    $mixpanel.people.set user.id, {
       "$first_name" => user.first_name,
       "$last_name" => user.first_name,
       "Signup" => user.created_at,

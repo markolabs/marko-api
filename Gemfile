@@ -109,7 +109,7 @@ gem 'zero_push'
 # gem 'oboe-heroku'
 gem 'newrelic_rpm'
 gem 'rocket_pants-rpm'
-gem 'mixpanel-rails'
+gem 'mixpanel-ruby'
 
 # EXTERNAL API LIBRARIES
 gem 'transloadit'

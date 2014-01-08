@@ -1,8 +1,6 @@
-class DropObserver < ActiveRecord::Observer
-  include Mixpanel::Helper
-  
+class DropObserver < ActiveRecord::Observer  
   def after_create(drop)
-    mixpanel.track "Drop Sent", {
+    $mixpanel.track "Drop Sent", {
       distinct_id: drop.sender_id, 
       receiver_id: drop.receiver_id, 
       message_id: drop.message_id
