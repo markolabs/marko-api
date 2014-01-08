@@ -1,14 +1,13 @@
 class UserObserver < ActiveRecord::Observer
   def after_create(user)
     Thread.new do
-      $mixpanel.track user.id, "User Created"
+      $mixpanel.track user.id, "User Signup"
     end
 
     Thread.new do
       $mixpanel.people.set user.id, {
         "$first_name" => user.first_name,
         "$last_name" => user.first_name,
-        "Signup" => user.created_at,
         "Username" => user.username,
         "Facebook ID" => user.fb_user_id
       }
@@ -20,7 +19,6 @@ class UserObserver < ActiveRecord::Observer
       $mixpanel.people.set user.id, {
         "$first_name" => user.first_name,
         "$last_name" => user.first_name,
-        "Signup" => user.created_at,
         "Username" => user.username,
         "Facebook ID" => user.fb_user_id
       }
