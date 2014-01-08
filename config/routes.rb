@@ -36,6 +36,7 @@ Spek::Application.routes.draw do
         post 'unread'
       end
     end
+    resources :pings, only: [:create]
     resource :sessions, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :destroy] do
       resources :messages, only: [:index]
